@@ -2,7 +2,9 @@ package jp.tonyu.screen.pattern;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -89,12 +91,24 @@ public class PatternParser {
   		List<CharPattern> pats = new PatternParser(img).parse();
 		System.out.println( pats );
   		Screen s = new Screen();
-  		int x=30,y=50;
-  		for (CharPattern p:pats) {
-  			s.getBuffer().getGraphics().drawImage(p.img,x,y,null);
-  			x+=20;
-  			y+=10;
+  		Graphics2D g = (Graphics2D) s.getBuffer().getGraphics();
+  		for (double r=0 ; r<1 ; r+=0.01) {
+  			AffineTransform t=new AffineTransform();
+  			t.translate(100,100);
+  			t.rotate(r);
+  			t.translate(-100,-100);
+  			t.translate(r*100, r*100);
+  			//t.scale(r+1, r+1);
+  			g.setTransform(t);
+  			s.clear();
+  	  		int x=30,y=50;
+  			for (CharPattern p:pats) {
+  				g.drawImage(p.img,x,y,null);
+  				x+=20;
+  				y+=10;
+  			}
+  			s.redraw();
+  			Thread.sleep(17);
   		}
-  		s.invalidate();
 	}
 }

@@ -1,5 +1,6 @@
 package jp.tonyu.screen;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -28,5 +29,13 @@ public class Screen extends Frame {
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(buf, 0,0,null);
+	}
+	public void clear() {
+		Graphics g = buf.getGraphics();
+		g.setColor(new Color(50,50,150));
+		g.fillRect(0, 0, width, height);		
+	}
+	public void redraw() {
+		paint(getGraphics());
 	}
 }
