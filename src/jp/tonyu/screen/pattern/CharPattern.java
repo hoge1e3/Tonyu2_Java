@@ -1,10 +1,7 @@
 package jp.tonyu.screen.pattern;
 
-import java.awt.Image;
+import java.awt.Graphics;
 
-public class CharPattern {
-	Image img;
-	public CharPattern(Image img) {
-		this.img=img;
-	}
+public interface CharPattern {
+	public void draw(Graphics g);
 }

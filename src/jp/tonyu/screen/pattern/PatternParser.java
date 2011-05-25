@@ -34,9 +34,9 @@ public class PatternParser {
 		buf.getGraphics().drawImage(img,0,0,null);
 		base=buf.getRGB(0,0);
 	}
-  	public List<CharPattern> parse() {
+  	public List<SpritePattern> parse() {
   		try {
-  			Vector<CharPattern> res=new Vector<CharPattern>();
+  			Vector<SpritePattern> res=new Vector<SpritePattern>();
 			for (int y=0; y<height ;y++) {
 				for (int x=0; x<width ;x++) {
 					int c=buf.getRGB(x, y);
@@ -49,10 +49,10 @@ public class PatternParser {
 			}
 			return res;
   		} catch (PatterParseError p) {
-  			return Collections.singletonList(new CharPattern(img));
+  			return Collections.singletonList(new SpritePattern(img));
   		}
 	}
-  	private CharPattern parse1Pattern(int x, int y) throws PatterParseError {
+  	private SpritePattern parse1Pattern(int x, int y) throws PatterParseError {
 		int trans=buf.getRGB(x, y);
 		int dx=x,dy=y;
 		while (dx<width) {
@@ -83,12 +83,12 @@ public class PatternParser {
 		Graphics g = buf.getGraphics();
 		g.setColor(new Color(base,true));
 		g.fillRect(x,y, w+2, h+2);
-		return new CharPattern(i);
+		return new SpritePattern(i);
 	}
 	public static void main(String[] args) throws Exception {
   		File src=new File("bukiset.png");
   		Image img=ImageIO.read(src);
-  		List<CharPattern> pats = new PatternParser(img).parse();
+  		List<SpritePattern> pats = new PatternParser(img).parse();
 		System.out.println( pats );
   		Screen s = new Screen();
   		Graphics2D g = (Graphics2D) s.getBuffer().getGraphics();
@@ -102,7 +102,7 @@ public class PatternParser {
   			g.setTransform(t);
   			s.clear();
   	  		int x=30,y=50;
-  			for (CharPattern p:pats) {
+  			for (SpritePattern p:pats) {
   				g.drawImage(p.img,x,y,null);
   				x+=20;
   				y+=10;
