@@ -1,4 +1,4 @@
-package jp.tonyu.screen.pattern;
+package jp.tonyu.kernel.screen.pattern;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,7 +17,7 @@ import java.util.Vector;
 import javax.imageio.ImageIO;
 
 import jp.tonyu.debug.Log;
-import jp.tonyu.screen.Screen;
+import jp.tonyu.kernel.screen.Screen;
 import jp.tonyu.util.SPrintf;
 import jp.tonyu.util.Util;
 

@@ -1,4 +1,4 @@
-package jp.tonyu.screen.pattern;
+package jp.tonyu.kernel.screen.pattern;
 
 import java.awt.Graphics;
 

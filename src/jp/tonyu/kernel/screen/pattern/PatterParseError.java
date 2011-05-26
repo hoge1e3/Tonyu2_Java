@@ -1,4 +1,4 @@
-package jp.tonyu.screen.pattern;
+package jp.tonyu.kernel.screen.pattern;
 
 public class PatterParseError extends Exception {
 	final PatternParser parser;

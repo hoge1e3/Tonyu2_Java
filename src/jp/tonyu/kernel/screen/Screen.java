@@ -1,4 +1,4 @@
-package jp.tonyu.screen;
+package jp.tonyu.kernel.screen;
 
 import java.awt.Color;
 import java.awt.Frame;
@@ -11,8 +11,10 @@ import java.awt.image.BufferedImage;
 public class Screen extends Frame {
 	Image buf;
 	int width=512,height=384;
+	Color bgcolor=new Color(20,80,180);
 	public Screen() {
 		buf=new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		clear();
 		setSize(width,height);
 		setVisible(true);
 		addWindowListener(new WindowAdapter() {
@@ -32,7 +34,7 @@ public class Screen extends Frame {
 	}
 	public void clear() {
 		Graphics g = buf.getGraphics();
-		g.setColor(new Color(50,50,150));
+		g.setColor(bgcolor);
 		g.fillRect(0, 0, width, height);		
 	}
 	public void redraw() {

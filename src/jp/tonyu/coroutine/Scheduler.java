@@ -3,6 +3,8 @@ package jp.tonyu.coroutine;
 import java.util.List;
 import java.util.Vector;
 
+import jp.tonyu.debug.Log;
+
 
 public class Scheduler  {
 	public List<Process> procs=new Vector<Process>();
@@ -14,10 +16,11 @@ public class Scheduler  {
 		willAdd.add(a);
 	}
 	public synchronized void runAll() {
-		Vector<Process> willDie = new Vector<Process>();
+		Vector<Process> willKilled = new Vector<Process>();
+		//Log.d(this, "Procs "+procs);
 		for (Process a:procs) {
 			if (a.isKilled()) {
-				willDie.add(a);
+				willKilled.add(a);
 				continue;
 			}
 			try {
@@ -27,7 +30,7 @@ public class Scheduler  {
 				e.printStackTrace();
 			}
 		}	
-		for (Process a:willDie) {
+		for (Process a:willKilled) {
 			procs.remove(a);
 		}
 		for (Process a:willAdd) {
