@@ -10,21 +10,27 @@ import jp.tonyu.coroutine.Process;
 import jp.tonyu.coroutine.Scheduler;
 import jp.tonyu.coroutine.SingleThreadProcess;
 import jp.tonyu.debug.Log;
+import jp.tonyu.kernel.device.awt.AWTScreen;
 import jp.tonyu.kernel.screen.Screen;
 
 public class Boot {
 	List<PlainChar> chars=new Vector<PlainChar>();
 	Screen screen;
 	Scheduler scheduler;
+	Global global;
 	public Boot(Screen g,Scheduler s) {
 		screen=g;scheduler=s;
+		global=new Global();
+	}
+	public Global getGlobal() {
+		return global;
 	}
 	final Vector<PlainChar> willAppear=new Vector<PlainChar>();
 	public void move() {
 		scheduler.runAll();
 		Vector<PlainChar> willDie=new Vector<PlainChar>();
 		//Log.d(this, chars.size());
-		screen.clear();
+		screen.clearSprites();
 		for (PlainChar c:chars) {
 			Process p = c.getPrimaryProcess();
 			if (p!=null && p.isKilled()) c.die();
@@ -40,7 +46,7 @@ public class Boot {
 			chars.add(a);
 		}
 		willAppear.clear();
-		screen.redraw();
+		screen.drawSprites();
 	}
 	public void appear(final PlainChar c) {
 		if (c instanceof MultiThreadChar) {
@@ -75,7 +81,10 @@ public class Boot {
 		c.setBoot(this);
 		willAppear.add(c);
 	}
-	public Graphics2D getGraphics() {
+	/*public Graphics2D getGraphics() {
 		return (Graphics2D)screen.getBuffer().getGraphics();
+	}*/
+	public Screen getScreen() {
+		return screen;
 	}
 }

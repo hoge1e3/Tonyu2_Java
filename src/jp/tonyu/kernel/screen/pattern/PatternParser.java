@@ -17,7 +17,8 @@ import java.util.Vector;
 import javax.imageio.ImageIO;
 
 import jp.tonyu.debug.Log;
-import jp.tonyu.kernel.screen.Screen;
+import jp.tonyu.kernel.device.awt.AWTCharPattern;
+import jp.tonyu.kernel.device.awt.AWTScreen;
 import jp.tonyu.util.SPrintf;
 import jp.tonyu.util.Util;
 
@@ -34,9 +35,9 @@ public class PatternParser {
 		buf.getGraphics().drawImage(img,0,0,null);
 		base=buf.getRGB(0,0);
 	}
-  	public List<SpritePattern> parse() {
+  	public List<AWTCharPattern> parse() {
   		try {
-  			Vector<SpritePattern> res=new Vector<SpritePattern>();
+  			Vector<AWTCharPattern> res=new Vector<AWTCharPattern>();
 			for (int y=0; y<height ;y++) {
 				for (int x=0; x<width ;x++) {
 					int c=buf.getRGB(x, y);
@@ -49,10 +50,10 @@ public class PatternParser {
 			}
 			return res;
   		} catch (PatterParseError p) {
-  			return Collections.singletonList(new SpritePattern(img));
+  			return Collections.singletonList(new AWTCharPattern(img));
   		}
 	}
-  	private SpritePattern parse1Pattern(int x, int y) throws PatterParseError {
+  	private AWTCharPattern parse1Pattern(int x, int y) throws PatterParseError {
 		int trans=buf.getRGB(x, y);
 		int dx=x,dy=y;
 		while (dx<width) {
@@ -83,14 +84,14 @@ public class PatternParser {
 		Graphics g = buf.getGraphics();
 		g.setColor(new Color(base,true));
 		g.fillRect(x,y, w+2, h+2);
-		return new SpritePattern(i);
+		return new AWTCharPattern(i);
 	}
 	public static void main(String[] args) throws Exception {
   		File src=new File("bukiset.png");
   		Image img=ImageIO.read(src);
-  		List<SpritePattern> pats = new PatternParser(img).parse();
+  		List<AWTCharPattern> pats = new PatternParser(img).parse();
 		System.out.println( pats );
-  		Screen s = new Screen();
+  		AWTScreen s = new AWTScreen();
   		Graphics2D g = (Graphics2D) s.getBuffer().getGraphics();
   		for (double r=0 ; r<1 ; r+=0.01) {
   			AffineTransform t=new AffineTransform();
@@ -100,10 +101,10 @@ public class PatternParser {
   			t.translate(r*100, r*100);
   			//t.scale(r+1, r+1);
   			g.setTransform(t);
-  			s.clear();
+  			s.clearSprites();
   	  		int x=30,y=50;
-  			for (SpritePattern p:pats) {
-  				g.drawImage(p.img,x,y,null);
+  			for (AWTCharPattern p:pats) {
+  				g.drawImage(p.getImg(),x,y,null);
   				x+=20;
   				y+=10;
   			}

@@ -18,6 +18,7 @@ public class Object1 extends PlainChar implements MultiThreadChar {
 			angle++;
 			scaleX=x/100;
 			scaleY=x/100;
+			alpha--;
 			//Log.d(this, "x="+x);
 			update();
 		}
