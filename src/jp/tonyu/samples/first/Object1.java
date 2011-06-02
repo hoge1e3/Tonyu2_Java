@@ -1,13 +1,11 @@
 package jp.tonyu.samples.first;
 
-import jp.tonyu.debug.Log;
 import jp.tonyu.kernel.MultiThreadChar;
 import jp.tonyu.kernel.PlainChar;
-import jp.tonyu.kernel.screen.pattern.CharPattern;
 
 public class Object1 extends PlainChar implements MultiThreadChar {
 
-	public Object1(int x, int y, CharPattern p) {
+	public Object1(int x, int y, Object p) {
 		super(x, y, p);
 	}
 
@@ -19,6 +17,7 @@ public class Object1 extends PlainChar implements MultiThreadChar {
 			scaleX=x/100;
 			scaleY=x/100;
 			alpha--;
+			if (x % 10==0) p=(Integer)p+1;
 			//Log.d(this, "x="+x);
 			update();
 		}

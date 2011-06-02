@@ -27,6 +27,9 @@ public class AWTImageSprite extends ImageSprite implements AWTDrawable {
 		g.transform(a);
 		g.setComposite(AlphaComposite.getInstance(
 			      AlphaComposite.SRC_OVER, (float)alpha/255));
-		((AWTCharPattern)p).draw(g);
+		if (p instanceof AWTCharPattern) {
+			AWTCharPattern pp = (AWTCharPattern) p;
+			pp.draw(g);
+		}
 	}
 }

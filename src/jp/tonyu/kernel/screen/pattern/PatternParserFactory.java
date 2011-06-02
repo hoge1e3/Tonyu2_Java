@@ -1,7 +1,9 @@
 package jp.tonyu.kernel.screen.pattern;
 
-import jp.tonyu.kernel.Resource;
+import java.io.IOException;
+
+import jp.tonyu.kernel.resource.Resource;
 
 public interface PatternParserFactory {
-	PatternParser newPatternParser(Resource r);
+	PatternParser newPatternParser(Resource r) throws IOException;
 }

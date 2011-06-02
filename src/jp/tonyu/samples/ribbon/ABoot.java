@@ -1,13 +1,15 @@
 package jp.tonyu.samples.ribbon;
 
+import jp.tonyu.kernel.Array;
 import jp.tonyu.kernel.PlainChar;
 
 public class ABoot extends RPlainChar {
 
 	private double ppc;
+	private Pend pt;
 	// 時間やレベル、ゲームオーバーの処理など、ゲーム全体の管理を行う。
 	@Override
-	void onMouseDown() {
+	protected void onMouseDown() {
 	  // ゲームオーバー時に"Replay F9"がクリックされるとゲームを最初から始める
 	  if (g().time<=0 && !designMode()) {
 	   g().projectManager.loadPage(g().page_index);
@@ -20,22 +22,23 @@ public class ABoot extends RPlainChar {
 		g().ths=new Array();
 		// リボンのパーツを配列g().thsにいれる
 		for (PlainChar t : g().chars) {
-		 if (t is Pend){
-		  t.t=null;
-		  g().ths.add(t);
-		  if (pt) pt.t=t;
-		  pt=t;
+		 if (t instanceof Pend){
+			 Pend p=(Pend)t;
+			 p.t=null;
+			 g().ths.add(p);
+			 if (pt!=null) pt.t=p;
+			 pt=p;
 		 }
 		} 
 		//ft.t=null;
 		g().score=0;
-		g().mplayer.play(g().se_Main);
+		//g().mplayer.play(g().se_Main);
 		g().srank=2000;
 		g().time=60;
 		g().level=1;
 		g().exp=0;
 
-		while(1) {
+		while(true) {
 		 update();
 		 // スコア表示
 		 drawText(x,y,"Score: "+g().score,color(255,255,255));

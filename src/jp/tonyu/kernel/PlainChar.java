@@ -5,13 +5,13 @@ import jp.tonyu.debug.Log;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 
 public class PlainChar {
-	public CharPattern p;
+	public Object p;
 	public double x,y,scaleX=1,scaleY=1,angle=0,alpha=255,zOrder=0;
 	public boolean f=false;
 	public boolean designMode() {
 		return false;
 	}
-	public PlainChar(int x,int y,CharPattern p) {
+	public PlainChar(double x,double y,Object p) {
 		this.x=x;
 		this.y=y;
 		this.p=p;
@@ -65,7 +65,8 @@ public class PlainChar {
 			g.setComposite(AlphaComposite.getInstance(
 				      AlphaComposite.SRC_OVER, (float)alpha/255));
 			p.draw(g);*/
-			getBoot().getScreen().addImageSprite(x,y,p,f,zOrder,angle,alpha,scaleX,scaleY);
+			CharPattern pp = getBoot().getPatternSequencer().convert(p);
+			getBoot().getScreen().addImageSprite(x,y,pp,f,zOrder,angle,alpha,scaleX,scaleY);
 			
 			//Log.d(this,"Draw!"+p);
 		}
@@ -74,7 +75,7 @@ public class PlainChar {
 		getBoot().appear(c);
 		return c;
 	}
-	void onMouseDown() {
+	protected void onMouseDown() {
 		// TODO Auto-generated method stub
 		
 	}

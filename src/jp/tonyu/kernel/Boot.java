@@ -7,17 +7,24 @@ import jp.tonyu.coroutine.MultiThreadProcess;
 import jp.tonyu.coroutine.Process;
 import jp.tonyu.coroutine.Scheduler;
 import jp.tonyu.coroutine.SingleThreadProcess;
+import jp.tonyu.kernel.device.Device;
 import jp.tonyu.kernel.screen.Screen;
+import jp.tonyu.kernel.screen.pattern.PatternSequencer;
 
 public class Boot {
 	List<PlainChar> chars=new Vector<PlainChar>();
 	Device device;
-	Scheduler scheduler;
+	Scheduler scheduler=new Scheduler();;
 	Global global;
-	public Boot(Device dev,Scheduler s, Global g) {
-		device=dev;scheduler=s;
+	PatternSequencer patternSequencer;
+	public Boot(Device dev, Global g) {
+		device=dev;
 		global=g;
+		patternSequencer=new PatternSequencer(global, device.getPatternParserFactory());
 		startup();
+	}
+	public PatternSequencer getPatternSequencer() {
+		return patternSequencer;
 	}
 	private void startup() {
 	
@@ -32,7 +39,7 @@ public class Boot {
 		scheduler.runAll();
 		Vector<PlainChar> willDie=new Vector<PlainChar>();
 		//Log.d(this, chars.size());
-		screen.clearSprites();
+		getScreen().clearSprites();
 		for (PlainChar c:chars) {
 			Process p = c.getPrimaryProcess();
 			if (p!=null && p.isKilled()) c.die();
@@ -48,7 +55,7 @@ public class Boot {
 			chars.add(a);
 		}
 		willAppear.clear();
-		screen.drawSprites();
+		getScreen().drawSprites();
 	}
 	public void appear(final PlainChar c) {
 		if (c instanceof MultiThreadChar) {
@@ -87,6 +94,6 @@ public class Boot {
 		return (Graphics2D)screen.getBuffer().getGraphics();
 	}*/
 	public Screen getScreen() {
-		return screen;
+		return device.getScreen();
 	}
 }

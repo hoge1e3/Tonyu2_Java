@@ -10,8 +10,11 @@ import jp.tonyu.coroutine.Scheduler;
 import jp.tonyu.kernel.Boot;
 import jp.tonyu.kernel.Global;
 import jp.tonyu.kernel.device.awt.AWTCharPattern;
+import jp.tonyu.kernel.device.awt.AWTDevice;
 import jp.tonyu.kernel.device.awt.AWTScreen;
 import jp.tonyu.kernel.device.awt.AWTPatternParser;
+import jp.tonyu.kernel.resource.FileResource;
+import jp.tonyu.kernel.screen.pattern.CharPattern;
 
 public class Main {
 
@@ -20,12 +23,12 @@ public class Main {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		AWTPatternParser p = new AWTPatternParser(ImageIO.read(new File("Ball.png")));
-		List<AWTCharPattern> pats = p.parse();
-		AWTScreen scr = new AWTScreen();
-		Scheduler sch = new Scheduler();
-		Boot b = new Boot(scr, sch, new Global());
-		b.appear(new Object1(50,50,pats.get(3)));
+		/*AWTPatternParser p = new AWTPatternParser(ImageIO.read(new File("Ball.png")));
+		List<CharPattern> pats = p.parse();*/
+		AWTDevice d=new AWTDevice();
+		Boot b = new Boot(d, new Global());
+		b.getPatternSequencer().add(new FileResource(new File("Ball.png")));
+		b.appear(new Object1(50,50,4));
 		while (true) {
 			b.move();
 			Thread.sleep(17);

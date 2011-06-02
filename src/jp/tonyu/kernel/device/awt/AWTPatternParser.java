@@ -14,10 +14,13 @@ import java.util.Vector;
 import javax.imageio.ImageIO;
 
 import jp.tonyu.debug.Log;
+import jp.tonyu.kernel.resource.FileResource;
+import jp.tonyu.kernel.screen.pattern.CharPattern;
 import jp.tonyu.kernel.screen.pattern.PatterParseError;
+import jp.tonyu.kernel.screen.pattern.PatternParser;
 import jp.tonyu.util.SPrintf;
 
-public class AWTPatternParser {
+public class AWTPatternParser implements PatternParser {
 	final int width,height;
 	final BufferedImage buf;
 	final int base;
@@ -30,9 +33,10 @@ public class AWTPatternParser {
 		buf.getGraphics().drawImage(img,0,0,null);
 		base=buf.getRGB(0,0);
 	}
-  	public List<AWTCharPattern> parse() {
+	@Override
+  	public List<CharPattern> parse() {
   		try {
-  			Vector<AWTCharPattern> res=new Vector<AWTCharPattern>();
+  			Vector<CharPattern> res=new Vector<CharPattern>();
 			for (int y=0; y<height ;y++) {
 				for (int x=0; x<width ;x++) {
 					int c=buf.getRGB(x, y);
@@ -45,7 +49,7 @@ public class AWTPatternParser {
 			}
 			return res;
   		} catch (PatterParseError p) {
-  			return Collections.singletonList(new AWTCharPattern(img));
+  			return Collections.singletonList((CharPattern)new AWTCharPattern(img));
   		}
 	}
   	private AWTCharPattern parse1Pattern(int x, int y) throws PatterParseError {
@@ -84,7 +88,7 @@ public class AWTPatternParser {
 	public static void main(String[] args) throws Exception {
   		File src=new File("bukiset.png");
   		Image img=ImageIO.read(src);
-  		List<AWTCharPattern> pats = new AWTPatternParser(img).parse();
+  		List<CharPattern> pats = new AWTPatternParser(img).parse();
 		System.out.println( pats );
   		AWTScreen s = new AWTScreen();
   		Graphics2D g = (Graphics2D) s.getBuffer().getGraphics();
@@ -98,8 +102,8 @@ public class AWTPatternParser {
   			g.setTransform(t);
   			s.clearSprites();
   	  		int x=30,y=50;
-  			for (AWTCharPattern p:pats) {
-  				g.drawImage(p.getImg(),x,y,null);
+  			for (CharPattern p:pats) {
+  				g.drawImage(((AWTCharPattern)p).getImg(),x,y,null);
   				x+=20;
   				y+=10;
   			}
