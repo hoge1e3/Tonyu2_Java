@@ -8,9 +8,10 @@ import javax.imageio.ImageIO;
 
 import jp.tonyu.coroutine.Scheduler;
 import jp.tonyu.kernel.Boot;
+import jp.tonyu.kernel.Global;
 import jp.tonyu.kernel.device.awt.AWTCharPattern;
 import jp.tonyu.kernel.device.awt.AWTScreen;
-import jp.tonyu.kernel.screen.pattern.PatternParser;
+import jp.tonyu.kernel.device.awt.AWTPatternParser;
 
 public class Main {
 
@@ -19,11 +20,11 @@ public class Main {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		PatternParser p = new PatternParser(ImageIO.read(new File("Ball.png")));
+		AWTPatternParser p = new AWTPatternParser(ImageIO.read(new File("Ball.png")));
 		List<AWTCharPattern> pats = p.parse();
 		AWTScreen scr = new AWTScreen();
 		Scheduler sch = new Scheduler();
-		Boot b = new Boot(scr, sch);
+		Boot b = new Boot(scr, sch, new Global());
 		b.appear(new Object1(50,50,pats.get(3)));
 		while (true) {
 			b.move();

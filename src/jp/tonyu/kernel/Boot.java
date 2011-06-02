@@ -1,7 +1,5 @@
 package jp.tonyu.kernel;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.util.List;
 import java.util.Vector;
 
@@ -9,18 +7,22 @@ import jp.tonyu.coroutine.MultiThreadProcess;
 import jp.tonyu.coroutine.Process;
 import jp.tonyu.coroutine.Scheduler;
 import jp.tonyu.coroutine.SingleThreadProcess;
-import jp.tonyu.debug.Log;
-import jp.tonyu.kernel.device.awt.AWTScreen;
 import jp.tonyu.kernel.screen.Screen;
 
 public class Boot {
 	List<PlainChar> chars=new Vector<PlainChar>();
-	Screen screen;
+	Device device;
 	Scheduler scheduler;
 	Global global;
-	public Boot(Screen g,Scheduler s) {
-		screen=g;scheduler=s;
-		global=new Global();
+	public Boot(Device dev,Scheduler s, Global g) {
+		device=dev;scheduler=s;
+		global=g;
+		startup();
+	}
+	private void startup() {
+	
+		global.projectManager=new ProjectManager(this);
+		global.chars=chars;
 	}
 	public Global getGlobal() {
 		return global;

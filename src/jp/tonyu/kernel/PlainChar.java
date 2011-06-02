@@ -8,6 +8,9 @@ public class PlainChar {
 	public CharPattern p;
 	public double x,y,scaleX=1,scaleY=1,angle=0,alpha=255,zOrder=0;
 	public boolean f=false;
+	public boolean designMode() {
+		return false;
+	}
 	public PlainChar(int x,int y,CharPattern p) {
 		this.x=x;
 		this.y=y;
@@ -70,5 +73,9 @@ public class PlainChar {
 	public <T extends PlainChar> T appear(T c) {
 		getBoot().appear(c);
 		return c;
+	}
+	void onMouseDown() {
+		// TODO Auto-generated method stub
+		
 	}
 }
