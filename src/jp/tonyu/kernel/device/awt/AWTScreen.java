@@ -15,10 +15,12 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Vector;
 
+import jp.tonyu.debug.Log;
 import jp.tonyu.kernel.screen.Screen;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 import jp.tonyu.kernel.screen.sprite.ImageSprite;
 import jp.tonyu.kernel.screen.sprite.Sprite;
+import jp.tonyu.kernel.screen.sprite.TextSprite;
 
 public class AWTScreen extends Frame implements Screen {
 	Image buf;
@@ -113,6 +115,7 @@ public class AWTScreen extends Frame implements Screen {
 		Graphics2D g = (Graphics2D) buf.getGraphics();
 		g.setColor(bgcolor);
 		g.fillRect(0, 0, width, height);		
+		//Log.d(this,slist.size());
 		for (AWTDrawable s:slist) {
 			s.draw(g);
 		}
@@ -124,6 +127,13 @@ public class AWTScreen extends Frame implements Screen {
 			 double angle, double alpha,
 			 double scaleX, double scaleY) {
 		AWTImageSprite res = new AWTImageSprite(x,y,p,f,zOrder,angle,alpha,scaleX,scaleY);
+		slist.add(res);
+		return res;
+	}
+	@Override
+	public TextSprite addTextSprite(double x, double y, String text, int color,
+			double size, double zOrder) {
+		AWTTextSprite res= new AWTTextSprite(x,y,text,color,size,zOrder);
 		slist.add(res);
 		return res;
 	}

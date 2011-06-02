@@ -19,6 +19,7 @@ public class Object1 extends PlainChar implements MultiThreadChar {
 			alpha--;
 			if (x % 10==0) p=(Integer)p+1;
 			//Log.d(this, "x="+x);
+			drawText(x,y,"x="+x,0xffffffff,20,0);
 			update();
 		}
 	}

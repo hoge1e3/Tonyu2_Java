@@ -20,5 +20,7 @@ public class RGlobal extends Global {
 	public int srank;
 	public int level;
 	public int exp;
+	public TimeIncr tincr;
+	public int pat_star;
 	
 }

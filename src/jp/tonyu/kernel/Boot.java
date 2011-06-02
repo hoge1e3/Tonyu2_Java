@@ -36,10 +36,10 @@ public class Boot {
 	}
 	final Vector<PlainChar> willAppear=new Vector<PlainChar>();
 	public void move() {
+		getScreen().clearSprites();
 		scheduler.runAll();
 		Vector<PlainChar> willDie=new Vector<PlainChar>();
 		//Log.d(this, chars.size());
-		getScreen().clearSprites();
 		for (PlainChar c:chars) {
 			Process p = c.getPrimaryProcess();
 			if (p!=null && p.isKilled()) c.die();

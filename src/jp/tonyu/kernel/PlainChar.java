@@ -1,7 +1,10 @@
 package jp.tonyu.kernel;
 
+import java.awt.Color;
+
 import jp.tonyu.coroutine.Process;
 import jp.tonyu.debug.Log;
+import jp.tonyu.kernel.screen.Screen;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 
 public class PlainChar {
@@ -10,6 +13,15 @@ public class PlainChar {
 	public boolean f=false;
 	public boolean designMode() {
 		return false;
+	}
+	public int color(int r,int g,int b,int a) {
+		return new Color(r,g,b,a).getRGB();
+	}
+	public int color(int r,int g,int b) {
+		return color(r,g,b,255);
+	}
+	public int trunc(double d) {
+		return Math.round((float)d);
 	}
 	public PlainChar(double x,double y,Object p) {
 		this.x=x;
@@ -66,10 +78,13 @@ public class PlainChar {
 				      AlphaComposite.SRC_OVER, (float)alpha/255));
 			p.draw(g);*/
 			CharPattern pp = getBoot().getPatternSequencer().convert(p);
-			getBoot().getScreen().addImageSprite(x,y,pp,f,zOrder,angle,alpha,scaleX,scaleY);
+			getScreen().addImageSprite(x,y,pp,f,zOrder,angle,alpha,scaleX,scaleY);
 			
 			//Log.d(this,"Draw!"+p);
 		}
+	}
+	public Screen getScreen() {
+		return getBoot().getScreen();
 	}
 	public <T extends PlainChar> T appear(T c) {
 		getBoot().appear(c);
@@ -79,4 +94,11 @@ public class PlainChar {
 		// TODO Auto-generated method stub
 		
 	}
+	public void drawText(double x, double y,String text,int col,double size, double zOrder) {
+		getScreen().addTextSprite(x, y, text, col, size, zOrder);
+	}
+	public void drawText(int x, double y, String string, int color) {
+		drawText(x,y,string,color,12,0);
+	}
+
 }
