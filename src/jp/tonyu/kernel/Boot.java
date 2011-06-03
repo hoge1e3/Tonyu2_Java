@@ -30,6 +30,9 @@ public class Boot {
 	
 		global.projectManager=new ProjectManager(this);
 		global.chars=chars;
+		global.screenWidth=getScreen().getWidth();
+		global.screenHeight=getScreen().getHeight();
+		
 	}
 	public Global getGlobal() {
 		return global;

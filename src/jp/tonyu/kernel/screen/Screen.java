@@ -14,4 +14,7 @@ public interface Screen {
 	void drawSprites();
 
 	void clearSprites();
+	
+	public int getWidth();
+	public int getHeight();
 }

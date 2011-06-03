@@ -6,9 +6,6 @@ import jp.tonyu.kernel.screen.pattern.CharPattern;
 
 public class ABoot extends RPlainChar {
 
-	public ABoot(int x, int y, CharPattern p) {
-		super(x, y, p);
-	}
 	private double ppc;
 	private Pend pt;
 	private int i;
@@ -62,11 +59,11 @@ public class ABoot extends RPlainChar {
 			}
 			// 経験値がレベル*5に達するとレベルアップ
 			if (g().exp>g().level*5 && g().time>0 ) {
-				g().tincr=appear(new TimeIncr(400,y+20,trunc(g().time)*10*g().level ) );
+				g().tincr=appear(new TimeIncr().construct_TimeIncr(400,y+20,trunc(g().time)*10*g().level ) );
 				g().level+=1;
 				g().exp=0;
 				// 新しいボールが出現する
-				appear(new Star(100,-100,g().pat_star+3,0));
+				appear(new Star().construct_Star(100,-100,g().pat_star+3,0));
 			}
 		}
 

@@ -27,8 +27,9 @@ public class Main {
 		List<CharPattern> pats = p.parse();*/
 		AWTDevice d=new AWTDevice();
 		Boot b = new Boot(d, new Global());
-		b.getPatternSequencer().add(new FileResource(new File("Ball.png")));
-		b.appear(new Object1(50,50,4));
+		b.getPatternSequencer().add(new FileResource(new File("image/Ball.png")));
+		b.getPatternSequencer().add(new FileResource(new File("image/Ribbon.png")));
+		b.appear(new Object1() .construct_PlainChar(50,50,4));
 		while (true) {
 			b.move();
 			Thread.sleep(17);

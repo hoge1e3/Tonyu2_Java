@@ -7,9 +7,10 @@ public class TimeIncr extends PlainChar {
 
 	public int i;
 
-	public TimeIncr(double x, double y, Object p) {
-		super(x, y, p);
-		// TODO Auto-generated constructor stub
+	public TimeIncr construct_TimeIncr(int j, double d, int k) {
+		// TODO Auto-generated method stub
+		return this;
 	}
+
 
 }

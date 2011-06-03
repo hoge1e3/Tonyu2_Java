@@ -1,0 +1,43 @@
+extends SpriteChar;
+
+// リボンのパーツ(節点)。このオブジェクトをたくさん並べてリボンを構成する
+mu=0.70;
+ospd=0.1;
+spd=ospd;
+thr=0;
+grav=0.3;
+while(1) {
+  cspd=vx*vx+vy*vy;
+  // tは次のパーツ。tがない部分はマウスによって位置を指定する。
+  if (t) {
+   tx=t.x;ty=t.y;
+  } else {
+   tx=$mouseX;
+   ty=$mouseY;
+  }
+  // 次のパーツの位置まで移動しようとする
+  vx+=(tx-x)*spd;
+  vy+=(ty-y)*spd+grav;
+  drawLine(x,y,tx,ty,color(trunc(cspd*20),trunc(255-cspd*20),255) );
+
+/*  if (x>$ScreenWidth) {x=$ScreenWidth;vx=-abs(vx);}
+  if (y>$ScreenHeight) {y=$ScreenHeight;vy=-abs(vy);}
+  if (x<0) {x=0;vx=abs(vx);}
+  if (y<0) {y=0;vy=abs(vy);}
+*/
+  vx=vx*mu;
+  vy=vy*mu;
+
+  x+=vx;
+  y+=vy;
+  if(cspd<thr*thr) {
+   spd=ospd;
+   acc=rnd()*rnd()*8;
+   vx=vx*acc;
+   acc=rnd()*rnd()*8;
+   vy=vy*acc;
+   thr=1.5+rnd();
+  }
+  p=-1;
+  update();
+}

@@ -1,0 +1,16 @@
+extends Char;
+
+// Great‚ð‚¾‚µ‚½‚Æ‚«‚É‰æ–Ê‚ðƒtƒ‰ƒbƒVƒ…‚³‚¹‚é
+function doFlash() {
+ v=255;
+}
+
+p=-1;
+
+v=0;
+while (1) {
+  update();
+  $map.setBGColor(color(v,v,100+trunc(v/2) ));
+  v=v-20;
+  if (v<10) v=0;
+}

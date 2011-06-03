@@ -12,6 +12,7 @@ import jp.tonyu.kernel.Page;
 
 public class RGlobal extends Global {
 
+	public Flash Flsh;
 	public double time;
 	public Page page_index;
 	public double mu;
@@ -22,5 +23,9 @@ public class RGlobal extends Global {
 	public int exp;
 	public TimeIncr tincr;
 	public int pat_star;
+	public TRank1 rank;
+	public int preg;
+	public int gcont;
+	public int kasc;
 	
 }

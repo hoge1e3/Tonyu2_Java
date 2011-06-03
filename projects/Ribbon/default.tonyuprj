@@ -1,0 +1,59 @@
+<resourcelist name="project">
+ <resourcelist name="pages">
+<Page name="$page_index" src="index.cmml"/>
+ </resourcelist>
+ <resourcelist name="params">
+  <param name="title" value="RibbonMania"/>
+  <param name="author" value="hoge- ship"/>
+  <param name="version" value="1.0"/>
+  <param name="mail" value="hoge-@mail.goo.ne.jp"/>
+  <param name="web" value="http://tonyu.kake.info.waseda.ac.jp"/>
+  <param name="cond" value="Ä”z•zA‰ü‘¢‚Æ‚à‚É–³’f‚Å‹–‰Â"/>
+  <param name="mainPage" value="$page_index"/>
+  <param name="commentID" value="10312498"/>
+  <param name="savedVersion" value="1250"/>
+  <param name="sound_stopOnPageLoad" value="1"/>
+ </resourcelist>
+ <resourcelist name="classes">
+  <class name="Pend" src="Pend.tonyu" category=""/>
+  <class name="ABoot" src="ABoot.tonyu" category=""/>
+  <class name="Star" src="Star.tonyu" category=""/>
+  <class name="TBomb" src="TBomb.tonyu" category=""/>
+  <class name="TRank1" src="TRank1.tonyu" category=""/>
+  <class name="TRank2" src="TRank2.tonyu" category=""/>
+  <class name="TRank0" src="TRank0.tonyu" category=""/>
+  <class name="Flash" src="Flash.tonyu" category=""/>
+  <class name="TimeIncr" src="TimeIncr.tonyu" category=""/>
+  <class name="PTS" src="PTS.tonyu" category=""/>
+  <class name="regist" src="regist.tonyu" category=""/>
+ </resourcelist>
+ <resourcelist name="sounds">
+<SoundEffect name="$se_bad" src="bad.wav"/>
+<SoundEffect name="$se_good" src="good.wav"/>
+<SoundEffect name="$se_great" src="great.wav"/>
+<SoundEffect name="$se_kasuri" src="kasuri.wav"/>
+<BGM name="$se_Main" src="Main.mzo"/>
+<SoundEffect name="$se_kasuri2" src="kasuri2.wav"/>
+ </resourcelist>
+ <resourcelist name="filelist">
+<Page name="r_0" src="index.cmml"/>
+<Page name="r_1" src="star.bmp"/>
+<Page name="r_2" src="Pend.tonyu"/>
+<Page name="r_3" src="ABoot.tonyu"/>
+<Page name="r_4" src="Star.tonyu"/>
+<Page name="r_5" src="TBomb.tonyu"/>
+<Page name="r_6" src="TRank1.tonyu"/>
+<Page name="r_7" src="TRank2.tonyu"/>
+<Page name="r_8" src="TRank0.tonyu"/>
+<Page name="r_9" src="Flash.tonyu"/>
+<Page name="r_10" src="TimeIncr.tonyu"/>
+<Page name="r_11" src="PTS.tonyu"/>
+<Page name="r_12" src="regist.tonyu"/>
+<Page name="r_13" src="bad.wav"/>
+<Page name="r_14" src="good.wav"/>
+<Page name="r_15" src="great.wav"/>
+<Page name="r_16" src="kasuri.wav"/>
+<Page name="r_17" src="Main.mzo"/>
+<Page name="r_18" src="kasuri2.wav"/>
+ </resourcelist>
+</resourcelist>

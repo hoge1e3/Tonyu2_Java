@@ -1,0 +1,26 @@
+extends TRank0;
+// ※このクラスは、TRank0クラスを継承しています。「クラス」ウィンドウでTRank0も参照してください
+
+function onUpdate(){
+  // putRankはTRank0で定義されている
+  putRank();
+}
+
+$gcont=0;
+gcon=0;
+p=-1;
+while(1) {
+  // ランクを計算する
+  rank=0;
+  px=$mouseX;
+  py=$mouseY;
+  while (dist($mouseX-px,$mouseY-py)<10) {
+    // マウスを動かしていないとランクが上がる
+    px=$mouseX;
+    py=$mouseY;
+    rank=rank+1;
+    update();
+  }
+  $gcont=0;
+  update();
+}

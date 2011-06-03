@@ -1,7 +1,6 @@
 package jp.tonyu.kernel.device.awt;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,11 +14,9 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Vector;
 
-import jp.tonyu.debug.Log;
 import jp.tonyu.kernel.screen.Screen;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 import jp.tonyu.kernel.screen.sprite.ImageSprite;
-import jp.tonyu.kernel.screen.sprite.Sprite;
 import jp.tonyu.kernel.screen.sprite.TextSprite;
 
 public class AWTScreen extends Frame implements Screen {

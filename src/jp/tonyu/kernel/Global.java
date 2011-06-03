@@ -9,6 +9,7 @@ public class Global {
 	public ProjectManager projectManager;
 	public List<PlainChar> chars;
 	Hashtable<String, Object> hash=new Hashtable<String, Object>();
+	public int screenWidth,screenHeight;
 	public Object getGlobal(String name) {
 		try {
 			Class<?> class1 = getClass();

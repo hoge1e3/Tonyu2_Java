@@ -5,9 +5,6 @@ import jp.tonyu.kernel.PlainChar;
 
 public class Object1 extends PlainChar implements MultiThreadChar {
 
-	public Object1(int x, int y, Object p) {
-		super(x, y, p);
-	}
 
 	@Override
 	public void run() {

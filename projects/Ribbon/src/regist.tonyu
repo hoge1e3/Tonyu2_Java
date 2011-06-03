@@ -1,0 +1,16 @@
+extends TextChar;
+
+// ハイスコア登録オブジェクト
+function onMouseDown() {
+  // "Register Hiscore"の上でマウスが押されたときの処理
+  // 設計中に誤ってブラウザを開かないようにする
+  if (!designMode()) {
+    // 得点をパラメータscoreに設定し、ブラウザを開く
+    $ranking.setParam("score",$score);
+    $ranking.openBrowser(); 
+    setVisible(0);
+    y=-500; 
+  }
+}
+setVisible(0);
+wait();

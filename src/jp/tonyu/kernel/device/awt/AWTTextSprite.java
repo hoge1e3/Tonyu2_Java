@@ -20,7 +20,7 @@ public class AWTTextSprite extends TextSprite implements AWTDrawable {
 		g.setFont(fn);
 		g.setColor(new Color(col));
 		g.drawString(text, (int)x, (int)y);
-		Log.d(this, col+" x ="+x+"y="+y);
+		//Log.d(this, col+" x ="+x+"y="+y);
 	}
 
 }

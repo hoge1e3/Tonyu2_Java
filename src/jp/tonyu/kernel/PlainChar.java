@@ -11,6 +11,7 @@ public class PlainChar {
 	public Object p;
 	public double x,y,scaleX=1,scaleY=1,angle=0,alpha=255,zOrder=0;
 	public boolean f=false;
+	
 	public boolean designMode() {
 		return false;
 	}
@@ -20,13 +21,32 @@ public class PlainChar {
 	public int color(int r,int g,int b) {
 		return color(r,g,b,255);
 	}
+	public double sin(double deg) {
+		return Math.sin(deg/360*2*Math.PI);
+	}
+	public double cos(double deg) {
+		return Math.cos(deg/360*2*Math.PI);
+	}
+	public double abs(double v) {
+		return Math.abs(v);
+	}
+
+	public double dist(double x,double y) {
+		return Math.sqrt(x*x+y*y);
+	}
 	public int trunc(double d) {
 		return Math.round((float)d);
 	}
-	public PlainChar(double x,double y,Object p) {
+	/*public PlainChar(double x,double y,Object p) {
 		this.x=x;
 		this.y=y;
 		this.p=p;
+	}*/
+	public PlainChar construct_PlainChar(double x,double y,Object p) {
+		this.x=x;
+		this.y=y;
+		this.p=p;
+		return this;
 	}
 	public Global g() {
 		return getBoot().getGlobal();

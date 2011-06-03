@@ -1,0 +1,17 @@
+extends SpriteChar;
+// ※このクラスは、putRankメソッドの定義だけを行っており、オブジェクトは作成されません。
+// TRank1,TRank2がTRank0クラスを継承しています。「クラス」ウィンドウでTRank1,TRank2も参照してください
+
+function putRank(){
+  var s,sc;
+  // ランクにより Bad,Good Greatを表示する
+  if (rank<10) {
+   drawText(x,y,"Bad",color(0,255,0));
+  } else if (rank<20) {
+   drawText(x,y,"Good",color(255,255,0));
+  } else {
+   s="Great ";
+   if (gcon>1) s=s.add(gcon);
+   drawText(x,y,s,color(255,155,0));
+  }
+}
