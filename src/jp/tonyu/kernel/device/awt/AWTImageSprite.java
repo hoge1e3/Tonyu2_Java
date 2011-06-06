@@ -17,20 +17,21 @@ public class AWTImageSprite extends ImageSprite implements AWTDrawable {
 			double scaleY) {
 		super(x, y, p, f, zOrder, angle, alpha, scaleX, scaleY);
 	}
-
+	public static final AffineTransform E=new AffineTransform();
 	@Override
 	public void draw(Graphics2D g) {
-		AffineTransform a=new AffineTransform();
-		a.translate(x, y);
-		a.scale(scaleX, scaleY);
-		a.rotate(angle*Math.PI*2/360);
-		g.setTransform(a);
-		g.setComposite(AlphaComposite.getInstance(
-			      AlphaComposite.SRC_OVER, (float)alpha/255));
-	
 		if (p instanceof AWTCharPattern) {
+			AffineTransform a=new AffineTransform();
+			a.translate(x, y);
+			a.scale(scaleX, scaleY);
+			a.rotate(angle*Math.PI*2/360);
+			g.setTransform(a);
+			g.setComposite(AlphaComposite.getInstance(
+					AlphaComposite.SRC_OVER, (float)alpha/255));
+
 			AWTCharPattern pp = (AWTCharPattern) p;
 			pp.draw(g);
+			g.setTransform(E);
 		}
 	}
 }

@@ -151,6 +151,7 @@ public class Star extends RPlainChar implements MultiThreadChar {
 			// ライフが少しずつ回復する
 			if (life<maxlife) life+=0.5;
 			// ライフゲージ表示
+			//drawLine(0,0,life,g().screenHeight-10-cy,color(0,255-cy*20,0));
 			drawLine(0,g().screenHeight-10-cy,life,g().screenHeight-10-cy,color(0,255-cy*20,0));
 			if (life<0) {
 				// ライフが0になったら破壊される。画面上方に移動

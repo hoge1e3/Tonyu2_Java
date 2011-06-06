@@ -28,13 +28,12 @@ public class Main {
 		/*AWTPatternParser p = new AWTPatternParser(ImageIO.read(new File("Ball.png")));
 		List<CharPattern> pats = p.parse();*/
 		AWTDevice d=new AWTDevice();
-		Boot b = new Boot(d, new RGlobal());
+		RGlobal g = new RGlobal();
+		Boot b = new Boot(d, g);
 		new Index().load(b);
-		//b.appear(new Object1() .construct_PlainChar(50,50,4));
-		while (true) {
-			b.move();
-			Thread.sleep(17);
-		}
+		b.doLoop();
 	}
+
+
 
 }

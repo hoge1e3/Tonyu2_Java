@@ -10,6 +10,9 @@ public class Global {
 	public List<PlainChar> chars;
 	Hashtable<String, Object> hash=new Hashtable<String, Object>();
 	public int screenWidth,screenHeight;
+	public boolean doDraw=true;
+	public int frameCount;
+
 	public Object getGlobal(String name) {
 		try {
 			Class<?> class1 = getClass();

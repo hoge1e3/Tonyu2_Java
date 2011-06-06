@@ -32,7 +32,7 @@ public class Boot {
 		global.projectManager=new ProjectManager(this);
 		global.chars=chars;
 		global.screenWidth=getScreen().getWidth();
-		global.screenHeight=getScreen().getHeight();
+		global.screenHeight=getScreen().getHeight()-20;
 		Log.d(this, global.screenHeight);
 		
 	}
@@ -40,8 +40,9 @@ public class Boot {
 		return global;
 	}
 	final Vector<PlainChar> willAppear=new Vector<PlainChar>();
-	public void move() {
-		getScreen().clearSprites();
+	public void move(boolean doDraw) {
+		global.doDraw=doDraw;
+		if (doDraw) getScreen().clearSprites();
 		scheduler.runAll();
 		Vector<PlainChar> willDie=new Vector<PlainChar>();
 		getGlobal().mouseX=getScreen().getMouseX();
@@ -53,7 +54,7 @@ public class Boot {
 			if (c.isDead()) {
 				willDie.add(c);
 			}
-			c.draw();
+			if (doDraw) c.draw();
 			//getScreen().addTextSprite(c.x, c.y, c+"" , 0xffffffff, 12 , 0);
 		}
 		for (PlainChar a:willDie) {
@@ -63,7 +64,7 @@ public class Boot {
 			chars.add(a);
 		}
 		willAppear.clear();
-		getScreen().drawSprites();
+		if (doDraw) getScreen().drawSprites();
 	}
 	public <T extends PlainChar> T appear(final T c) {
 		if (c instanceof MultiThreadChar) {
@@ -105,5 +106,24 @@ public class Boot {
 	}*/
 	public Screen getScreen() {
 		return device.getScreen();
+	}
+	
+	public void doLoop() throws InterruptedException {
+		long start=System.currentTimeMillis();
+		global.frameCount=0;
+		boolean doDraw=true;
+		while (true) {
+			move(doDraw);
+			long n=System.currentTimeMillis();
+			global.frameCount++;
+			long slt = start+global.frameCount*17-n;
+			if (slt>100) slt=100;
+			if (slt>0) {
+				doDraw=true;
+				Thread.sleep(slt);
+			} else {
+				doDraw=false;
+			}
+		}
 	}
 }

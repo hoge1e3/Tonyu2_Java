@@ -32,7 +32,7 @@ public class Main {
 		b.appear(new Object1() .construct_PlainChar(50,50,4));
 		b.appear(new Object1() .construct_PlainChar(150,30,4));
 		while (true) {
-			b.move();
+			b.move(true);
 			Thread.sleep(17);
 		}
 	}
