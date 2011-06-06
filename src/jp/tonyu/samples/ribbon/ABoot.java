@@ -1,10 +1,12 @@
 package jp.tonyu.samples.ribbon;
 
+import jp.tonyu.debug.Log;
 import jp.tonyu.kernel.Array;
+import jp.tonyu.kernel.MultiThreadChar;
 import jp.tonyu.kernel.PlainChar;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 
-public class ABoot extends RPlainChar {
+public class ABoot extends RPlainChar implements MultiThreadChar {
 
 	private double ppc;
 	private Pend pt;
@@ -17,7 +19,8 @@ public class ABoot extends RPlainChar {
 			g().projectManager.loadPage(g().page_index);
 		}
 	}
-	protected void run() {
+	@Override
+	public void run() {
 		p=-1;
 		ppc=0;
 		g().mu=0.95;
@@ -37,6 +40,7 @@ public class ABoot extends RPlainChar {
 		//g().mplayer.play(g().se_Main);
 		g().srank=2000;
 		g().time=60;
+		Log.d(this, g().time);
 		g().level=1;
 		g().exp=0;
 

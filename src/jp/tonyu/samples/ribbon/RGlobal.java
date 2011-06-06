@@ -27,5 +27,7 @@ public class RGlobal extends Global {
 	public int preg;
 	public int gcont;
 	public int kasc;
+	public ABoot aBoot;
+	public Star Star;
 	
 }

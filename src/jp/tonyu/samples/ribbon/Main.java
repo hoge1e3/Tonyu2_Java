@@ -1,4 +1,4 @@
-package jp.tonyu.samples.first;
+package jp.tonyu.samples.ribbon;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +15,8 @@ import jp.tonyu.kernel.device.awt.AWTScreen;
 import jp.tonyu.kernel.device.awt.AWTPatternParser;
 import jp.tonyu.kernel.resource.FileResource;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
+import jp.tonyu.samples.first.Object1;
+import jp.tonyu.samples.ribbon.page.Index;
 
 public class Main {
 
@@ -26,11 +28,9 @@ public class Main {
 		/*AWTPatternParser p = new AWTPatternParser(ImageIO.read(new File("Ball.png")));
 		List<CharPattern> pats = p.parse();*/
 		AWTDevice d=new AWTDevice();
-		Boot b = new Boot(d, new Global());
-		b.getPatternSequencer().add(new FileResource(new File("image/Ball.png")));
-		b.getPatternSequencer().add(new FileResource(new File("image/Ribbon.png")));
-		b.appear(new Object1() .construct_PlainChar(50,50,4));
-		b.appear(new Object1() .construct_PlainChar(150,30,4));
+		Boot b = new Boot(d, new RGlobal());
+		new Index().load(b);
+		//b.appear(new Object1() .construct_PlainChar(50,50,4));
 		while (true) {
 			b.move();
 			Thread.sleep(17);

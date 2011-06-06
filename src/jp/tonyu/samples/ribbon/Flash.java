@@ -1,6 +1,8 @@
 package jp.tonyu.samples.ribbon;
 
-public class Flash extends RPlainChar {
+import jp.tonyu.kernel.MultiThreadChar;
+
+public class Flash extends RPlainChar implements MultiThreadChar {
 
 
 
@@ -8,5 +10,9 @@ public class Flash extends RPlainChar {
 		// TODO Auto-generated method stub
 		
 	}
-
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 }

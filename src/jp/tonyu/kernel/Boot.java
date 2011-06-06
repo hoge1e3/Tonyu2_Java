@@ -7,6 +7,7 @@ import jp.tonyu.coroutine.MultiThreadProcess;
 import jp.tonyu.coroutine.Process;
 import jp.tonyu.coroutine.Scheduler;
 import jp.tonyu.coroutine.SingleThreadProcess;
+import jp.tonyu.debug.Log;
 import jp.tonyu.kernel.device.Device;
 import jp.tonyu.kernel.screen.Screen;
 import jp.tonyu.kernel.screen.pattern.PatternSequencer;
@@ -32,6 +33,7 @@ public class Boot {
 		global.chars=chars;
 		global.screenWidth=getScreen().getWidth();
 		global.screenHeight=getScreen().getHeight();
+		Log.d(this, global.screenHeight);
 		
 	}
 	public Global getGlobal() {
@@ -42,6 +44,8 @@ public class Boot {
 		getScreen().clearSprites();
 		scheduler.runAll();
 		Vector<PlainChar> willDie=new Vector<PlainChar>();
+		getGlobal().mouseX=getScreen().getMouseX();
+		getGlobal().mouseY=getScreen().getMouseY();
 		//Log.d(this, chars.size());
 		for (PlainChar c:chars) {
 			Process p = c.getPrimaryProcess();
@@ -50,6 +54,7 @@ public class Boot {
 				willDie.add(c);
 			}
 			c.draw();
+			//getScreen().addTextSprite(c.x, c.y, c+"" , 0xffffffff, 12 , 0);
 		}
 		for (PlainChar a:willDie) {
 			chars.remove(a);
@@ -60,7 +65,7 @@ public class Boot {
 		willAppear.clear();
 		getScreen().drawSprites();
 	}
-	public void appear(final PlainChar c) {
+	public <T extends PlainChar> T appear(final T c) {
 		if (c instanceof MultiThreadChar) {
 			final MultiThreadChar m = (MultiThreadChar) c;
 			MultiThreadProcess pr = new MultiThreadProcess(scheduler) {
@@ -72,8 +77,7 @@ public class Boot {
 			};
 			scheduler.add(pr);
 			c.setPrimaryProcess(pr);
-		}
-		if (c instanceof StateChar) {
+		} else if (c instanceof StateChar) {
 			final StateChar s = (StateChar) c;
 			c.state=new Runnable() {				
 				@Override
@@ -89,9 +93,12 @@ public class Boot {
 			};
 			scheduler.add(pr);
 			c.setPrimaryProcess(pr);			
+		} else {
+			Log.die(c+" is neigher StateChar not MultthreadChar");
 		}
 		c.setBoot(this);
 		willAppear.add(c);
+		return c;
 	}
 	/*public Graphics2D getGraphics() {
 		return (Graphics2D)screen.getBuffer().getGraphics();

@@ -22,7 +22,7 @@ import jp.tonyu.kernel.screen.sprite.TextSprite;
 
 public class AWTScreen extends Frame implements Screen {
 	Image buf;
-	int width=512,height=384;
+	int width=563,height=386+20;
 	int mx,my;
 	int[] keys=new int[256];
 	Color bgcolor=new Color(20,80,180);
@@ -113,6 +113,7 @@ public class AWTScreen extends Frame implements Screen {
 		Graphics2D g = (Graphics2D) buf.getGraphics();
 		g.setColor(bgcolor);
 		g.fillRect(0, 0, width, height);		
+		g.translate(0, 20);
 		//Log.d(this,slist.size());
 		for (AWTDrawable s:slist) {
 			s.draw(g);
@@ -139,6 +140,11 @@ public class AWTScreen extends Frame implements Screen {
 	public LineSprite addLineSprite(double sx, double sy, double dx, double dy,
 			int color) {
 		AWTLineSprite res= new AWTLineSprite(sx, sy, dx, dy, color);
+		slist.add(res);
 		return res;
 	}
+	@Override
+	public int getMouseX(){return mx;}
+	@Override
+	public int getMouseY(){return my;}
 }

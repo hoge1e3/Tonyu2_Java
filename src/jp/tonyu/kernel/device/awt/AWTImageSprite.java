@@ -24,9 +24,10 @@ public class AWTImageSprite extends ImageSprite implements AWTDrawable {
 		a.translate(x, y);
 		a.scale(scaleX, scaleY);
 		a.rotate(angle*Math.PI*2/360);
-		g.transform(a);
+		g.setTransform(a);
 		g.setComposite(AlphaComposite.getInstance(
 			      AlphaComposite.SRC_OVER, (float)alpha/255));
+	
 		if (p instanceof AWTCharPattern) {
 			AWTCharPattern pp = (AWTCharPattern) p;
 			pp.draw(g);

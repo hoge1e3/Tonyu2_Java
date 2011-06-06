@@ -1,6 +1,8 @@
 package jp.tonyu.samples.ribbon;
 
-public class TRank2 extends RPlainChar {
+import jp.tonyu.kernel.MultiThreadChar;
+
+public class TRank2 extends RPlainChar implements MultiThreadChar {
 
 
 	int rank,gcont;
@@ -10,5 +12,9 @@ public class TRank2 extends RPlainChar {
 		this.gcont=gcont;
 		return this;
 	}
-
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -16,6 +16,10 @@ public class PlainChar {
 		return false;
 	}
 	public int color(int r,int g,int b,int a) {
+		if (r<=0) r=0; if(r>255) r=255;
+		if (g<=0) g=0; if(g>255) g=255;
+		if (b<=0) b=0; if(b>255) b=255;
+		if (a<=0) a=0; if(a>255) a=255;
 		return new Color(r,g,b,a).getRGB();
 	}
 	public int color(int r,int g,int b) {
@@ -98,6 +102,9 @@ public class PlainChar {
 				      AlphaComposite.SRC_OVER, (float)alpha/255));
 			p.draw(g);*/
 			CharPattern pp = getBoot().getPatternSequencer().convert(p);
+			if (p instanceof Integer && (Integer)p>=30) {
+				//Log.d(this, " x="+x+"  y="+y+" pp="+pp+" p="+p);
+			}
 			getScreen().addImageSprite(x,y,pp,f,zOrder,angle,alpha,scaleX,scaleY);
 			
 			//Log.d(this,"Draw!"+p);
@@ -122,5 +129,8 @@ public class PlainChar {
 	}
 	public void drawLine(double sx,double sy,double dx,double dy,int color) {
 		getScreen().addLineSprite(sx, sy, dx, dy, color);
+	}
+	public double rnd() {
+		return Math.random();
 	}
 }

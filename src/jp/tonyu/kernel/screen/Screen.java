@@ -18,4 +18,6 @@ public interface Screen {
 	
 	public int getWidth();
 	public int getHeight();
+	int getMouseX();
+	int getMouseY();
 }
