@@ -17,6 +17,7 @@ import java.util.Vector;
 import jp.tonyu.kernel.screen.Screen;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 import jp.tonyu.kernel.screen.sprite.ImageSprite;
+import jp.tonyu.kernel.screen.sprite.LineSprite;
 import jp.tonyu.kernel.screen.sprite.TextSprite;
 
 public class AWTScreen extends Frame implements Screen {
@@ -132,6 +133,12 @@ public class AWTScreen extends Frame implements Screen {
 			double size, double zOrder) {
 		AWTTextSprite res= new AWTTextSprite(x,y,text,color,size,zOrder);
 		slist.add(res);
+		return res;
+	}
+	@Override
+	public LineSprite addLineSprite(double sx, double sy, double dx, double dy,
+			int color) {
+		AWTLineSprite res= new AWTLineSprite(sx, sy, dx, dy, color);
 		return res;
 	}
 }

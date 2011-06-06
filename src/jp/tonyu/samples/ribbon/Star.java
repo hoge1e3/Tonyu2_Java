@@ -26,7 +26,7 @@ public class Star extends RPlainChar implements MultiThreadChar {
 			g().gcont=1; 
 			// 破片を6個出現させる
 			while (i<360) {
-				appear(new TBomb(x,y,cos(i)*5,sin(i)*5));
+				appear(new TBomb().construct_TBomb(x,y,cos(i)*5,sin(i)*5));
 				i=i+60;
 			}
 		} else if (g().rank.rank<20) {
@@ -36,7 +36,7 @@ public class Star extends RPlainChar implements MultiThreadChar {
 			g().gcont=1; 
 			// 破片を12個出現させる
 			while (i<360) {
-				appear(new TBomb(x,y,cos(i)*5,sin(i)*5));
+				appear(new TBomb().construct_TBomb(x,y,cos(i)*5,sin(i)*5));
 				i=i+30;
 			}
 		}
@@ -49,17 +49,17 @@ public class Star extends RPlainChar implements MultiThreadChar {
 			g().preg=1;
 			// 破片を18個出現させる
 			while (i<360) {
-				appear(new TBomb(x,y,cos(i)*5,sin(i)*5));
+				appear(new TBomb().construct_TBomb(x,y,cos(i)*5,sin(i)*5));
 				i=i+60;
 			}
 			i=15; 
 			while (i<360) {
-				appear(new TBomb(x,y,cos(i)*10,sin(i)*10));
+				appear(new TBomb().construct_TBomb(x,y,cos(i)*10,sin(i)*10));
 				i=i+30;
 			}
 		} 
 		// Bad Good Great(+コンボ数) を表示する
-		appear (new TRank2(x,y,g().rank.rank,g().gcont));
+		appear (new TRank2().construct_TRank2(x,y,g().rank.rank,g().gcont));
 
 	}
 
@@ -101,7 +101,7 @@ public class Star extends RPlainChar implements MultiThreadChar {
 			// ぶつかっていたら、lifeを減らす
 			//if (g().kasc==0) g().mplayer.play(g().se_kasuri); else g().mplayer.play(g().se_kasuri2);
 			g().kasc=1-g().kasc;
-			appear(new TBomb(x,y,-vx,-vy));
+			appear(new TBomb().construct_TBomb(x,y,-vx,-vy));
 			life=life-dl*0.15;
 			g().score=g().score+1;
 		}
@@ -147,7 +147,7 @@ public class Star extends RPlainChar implements MultiThreadChar {
 				// ライフが0になったら破壊される。画面上方に移動
 				crash();
 				life=maxlife;
-				appear(new PTS(x,y+30,g().rank.rank*4,g().gcont));
+				//appear(new PTS(x,y+30,g().rank.rank*4,g().gcont));
 				y=-30;vy=0;
 				g().score=g().score+50+g().rank.rank*4*g().gcont;
 				g().time=g().time+g().rank.rank*0.05*g().gcont;

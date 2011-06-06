@@ -117,8 +117,10 @@ public class PlainChar {
 	public void drawText(double x, double y,String text,int col,double size, double zOrder) {
 		getScreen().addTextSprite(x, y, text, col, size, zOrder);
 	}
-	public void drawText(int x, double y, String string, int color) {
+	public void drawText(double x, double y, String string, int color) {
 		drawText(x,y,string,color,12,0);
 	}
-
+	public void drawLine(double sx,double sy,double dx,double dy,int color) {
+		getScreen().addLineSprite(sx, sy, dx, dy, color);
+	}
 }
