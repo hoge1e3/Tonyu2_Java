@@ -19,8 +19,8 @@ public class Index implements Page {
 	public void load(Boot boot) throws IOException {
 		RGlobal g=(RGlobal)boot.getGlobal();
 //<cpattern name="$pat_star" src="star.bmp"/>
-		boot.getPatternSequencer().add(new FileResource(new File("image/Ball.png")));
-		g.pat_star=boot.getPatternSequencer().add(new FileResource(new File("image/Ribbon.png")));
+		boot.getPatternSequencer().add(new File("image/Ball.png"));
+		g.pat_star=boot.getPatternSequencer().add(new File("image/Ribbon.png"));
 		
 //<generator className="Pend" name="$pend_22" inst_p="31" inst_x="120" inst_y="101"/> *
 		for (int i=0 ; i<15; i++) {

@@ -16,12 +16,12 @@ public class PatternSequencer {
 		this.global = global;
 		this.factory = factory;
 	}
-	public int add(Resource imgRsc) throws IOException {
+	public int add(Object imgRsc) throws IOException {
 		PatternParser p = factory.newPatternParser(imgRsc);
 		List<CharPattern> pats = p.parse();
-		String n = imgRsc.name().replaceAll("\\..*$", "").replaceAll("[^a-zA-Z0-9_]", "");
+		//String n = imgRsc.name().replaceAll("\\..*$", "").replaceAll("[^a-zA-Z0-9_]", "");
 		int res = all.size();
-		global.setGlobal("pat_"+n, res);
+		//global.setGlobal("pat_"+n, res);
 		for (CharPattern pa:pats) {
 			all.add(pa);
 		}

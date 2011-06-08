@@ -59,17 +59,17 @@ public class AWTPatternParser implements PatternParser {
 			if (buf.getRGB(dx,dy)!=trans) break;
 			dx++;
 		}
-		if (dx>=width || buf.getRGB(dx,dy)!=base) throw new PatterParseError(this,dx,dy);
+		if (dx>=width || buf.getRGB(dx,dy)!=base) throw new PatterParseError(this,dx,dy,"");
 		dx--;
 		while (dy<height) {
 			if (buf.getRGB(dx,dy)!=trans) break;
 			dy++;
 		}
-		if (dy>=height || buf.getRGB(dx,dy)!=base) throw new PatterParseError(this,dx,dy);
+		if (dy>=height || buf.getRGB(dx,dy)!=base) throw new PatterParseError(this,dx,dy,"");
 		Log.d(this, SPrintf.sprintf("x=%d y=%d dx=%d dy=%d",x,y,dx,dy));
 		dy--;
 		int sx=x+1,sy=y+1,w=dx-sx,h=dy-sy;
-		if (w*h==0) throw new PatterParseError(this, dx, dy); 
+		if (w*h==0) throw new PatterParseError(this, dx, dy,"");
 		for (int ey=sy ; ey<dy ; ey++) {
 			for (int ex=sx ; ex<dx ; ex++) {
 				if (buf.getRGB(ex, ey)==trans) {
