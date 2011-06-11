@@ -26,7 +26,7 @@ public class AWTScreen extends Frame implements Screen {
 	int mx,my;
 	int[] keys=new int[256];
 	Color bgcolor=new Color(20,80,180);
-	private List<AWTDrawable> slist = new Vector<AWTDrawable>(); 
+	private List<AWTDrawable> slist = new Vector<AWTDrawable>();
 	public AWTScreen() {
 		buf=new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		clearSprites();
@@ -37,57 +37,57 @@ public class AWTScreen extends Frame implements Screen {
 			public void windowClosing(WindowEvent e) {
 				setVisible(false);
 				System.exit(1);
-			}	
+			}
 		});
 		addMouseMotionListener(new MouseMotionListener() {
-			
+
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				mx=e.getX();
 				my=e.getY();
 			}
-			
+
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				mx=e.getX();
-				my=e.getY();				
+				my=e.getY();
 			}
 		});
 		addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				mx=e.getX();
 				my=e.getY();
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				mx=e.getX();
 				my=e.getY();
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				mx=e.getX();
 				my=e.getY();
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				mx=e.getX();
 				my=e.getY();
-						
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				mx=e.getX();
 				my=e.getY();
-				
+
 			}
 		});
 	}
@@ -112,7 +112,7 @@ public class AWTScreen extends Frame implements Screen {
 	public void drawSprites() {
 		Graphics2D g = (Graphics2D) buf.getGraphics();
 		g.setColor(bgcolor);
-		g.fillRect(0, 0, width, height);		
+		g.fillRect(0, 0, width, height);
 		g.translate(0, 20);
 		//Log.d(this,slist.size());
 		for (AWTDrawable s:slist) {
@@ -121,7 +121,7 @@ public class AWTScreen extends Frame implements Screen {
 		redraw();
 	}
 	@Override
-	public ImageSprite addImageSprite(double x, double y, 
+	public ImageSprite addImageSprite(double x, double y,
 			 CharPattern p, boolean f, double zOrder,
 			 double angle, double alpha,
 			 double scaleX, double scaleY) {
@@ -144,7 +144,7 @@ public class AWTScreen extends Frame implements Screen {
 		return res;
 	}
 	@Override
-	public int getMouseX(){return mx;}
+	public double getMouseX(){return mx;}
 	@Override
-	public int getMouseY(){return my;}
+	public double getMouseY(){return my;}
 }

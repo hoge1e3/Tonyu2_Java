@@ -6,4 +6,5 @@ import jp.tonyu.kernel.screen.pattern.PatternParserFactory;
 public interface Device {
 	public Screen getScreen();
 	public PatternParserFactory getPatternParserFactory();
+	public ResourceList getResourceList();
 }

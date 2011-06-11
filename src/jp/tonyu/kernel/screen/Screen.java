@@ -6,7 +6,7 @@ import jp.tonyu.kernel.screen.sprite.LineSprite;
 import jp.tonyu.kernel.screen.sprite.TextSprite;
 
 public interface Screen {
-	public ImageSprite addImageSprite(double x, double y, 
+	public ImageSprite addImageSprite(double x, double y,
 			 CharPattern p, boolean f, double zOrder,
 			 double angle, double alpha,
 			 double scaleX, double scaleY) ;
@@ -15,9 +15,9 @@ public interface Screen {
 	void drawSprites();
 
 	void clearSprites();
-	
+
 	public int getWidth();
 	public int getHeight();
-	int getMouseX();
-	int getMouseY();
+	double getMouseX();
+	double getMouseY();
 }

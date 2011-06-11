@@ -1,11 +1,10 @@
 package jp.tonyu.samples.ribbon.page;
 
-import java.io.File;
 import java.io.IOException;
 
 import jp.tonyu.kernel.Boot;
 import jp.tonyu.kernel.Page;
-import jp.tonyu.kernel.resource.FileResource;
+import jp.tonyu.kernel.device.ResourceList;
 import jp.tonyu.samples.ribbon.ABoot;
 import jp.tonyu.samples.ribbon.Flash;
 import jp.tonyu.samples.ribbon.Pend;
@@ -19,8 +18,9 @@ public class Index implements Page {
 	public void load(Boot boot) throws IOException {
 		RGlobal g=(RGlobal)boot.getGlobal();
 //<cpattern name="$pat_star" src="star.bmp"/>
-		boot.getPatternSequencer().add(new File("image/Ball.png"));
-		g.pat_star=boot.getPatternSequencer().add(new File("image/Ribbon.png"));
+		ResourceList rlist = boot.getDevice().getResourceList();
+		boot.getPatternSequencer().add(rlist.getImageResource("ball"));
+		g.pat_star=boot.getPatternSequencer().add(rlist.getImageResource("ribbon"));
 		
 //<generator className="Pend" name="$pend_22" inst_p="31" inst_x="120" inst_y="101"/> *
 		for (int i=0 ; i<15; i++) {

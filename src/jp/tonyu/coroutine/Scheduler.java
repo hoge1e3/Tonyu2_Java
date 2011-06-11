@@ -7,8 +7,8 @@ import jp.tonyu.debug.Log;
 
 
 public class Scheduler  {
-	public List<Process> procs=new Vector<Process>();
-	public List<Process> willAdd=new Vector<Process>();
+	private List<Process> procs=new Vector<Process>();
+	private List<Process> willAdd=new Vector<Process>();
 	public synchronized void resume() {
 		notify();
 	}
@@ -29,7 +29,7 @@ public class Scheduler  {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}	
+		}
 		for (Process a:willKilled) {
 			procs.remove(a);
 		}

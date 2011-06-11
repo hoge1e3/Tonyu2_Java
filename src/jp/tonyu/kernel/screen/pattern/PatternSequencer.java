@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Vector;
 
 import jp.tonyu.kernel.Global;
-import jp.tonyu.kernel.resource.Resource;
 
 public class PatternSequencer {
 	final Global global;

@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import jp.tonyu.kernel.resource.Resource;
 import jp.tonyu.kernel.screen.pattern.PatternParser;
 import jp.tonyu.kernel.screen.pattern.PatternParserFactory;
 

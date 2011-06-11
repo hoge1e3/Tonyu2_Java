@@ -14,7 +14,6 @@ import java.util.Vector;
 import javax.imageio.ImageIO;
 
 import jp.tonyu.debug.Log;
-import jp.tonyu.kernel.resource.FileResource;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 import jp.tonyu.kernel.screen.pattern.PatterParseError;
 import jp.tonyu.kernel.screen.pattern.PatternParser;

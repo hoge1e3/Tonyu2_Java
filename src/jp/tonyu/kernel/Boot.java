@@ -28,13 +28,18 @@ public class Boot {
 		return patternSequencer;
 	}
 	private void startup() {
-	
+
 		global.projectManager=new ProjectManager(this);
 		global.chars=chars;
 		global.screenWidth=getScreen().getWidth();
 		global.screenHeight=getScreen().getHeight()-20;
 		Log.d(this, global.screenHeight);
-		
+
+	}
+	private void refreshGlobal() {
+		global.screenWidth=getScreen().getWidth();
+		global.screenHeight=getScreen().getHeight()-20;
+
 	}
 	public Global getGlobal() {
 		return global;
@@ -64,23 +69,24 @@ public class Boot {
 			chars.add(a);
 		}
 		willAppear.clear();
+		refreshGlobal();
 		if (doDraw) getScreen().drawSprites();
 	}
 	public <T extends PlainChar> T appear(final T c) {
 		if (c instanceof MultiThreadChar) {
 			final MultiThreadChar m = (MultiThreadChar) c;
 			MultiThreadProcess pr = new MultiThreadProcess(scheduler) {
-				
+
 				@Override
 				public void run() {
-					m.run();				
+					m.run();
 				}
 			};
 			scheduler.add(pr);
 			c.setPrimaryProcess(pr);
 		} else if (c instanceof StateChar) {
 			final StateChar s = (StateChar) c;
-			c.state=new Runnable() {				
+			c.state=new Runnable() {
 				@Override
 				public void run() {
 					s.main();
@@ -93,7 +99,7 @@ public class Boot {
 				}
 			};
 			scheduler.add(pr);
-			c.setPrimaryProcess(pr);			
+			c.setPrimaryProcess(pr);
 		} else {
 			Log.die(c+" is neigher StateChar not MultthreadChar");
 		}
@@ -107,7 +113,7 @@ public class Boot {
 	public Screen getScreen() {
 		return device.getScreen();
 	}
-	
+
 	public void doLoop() throws InterruptedException {
 		long start=System.currentTimeMillis();
 		global.frameCount=0;
@@ -125,5 +131,8 @@ public class Boot {
 				doDraw=false;
 			}
 		}
+	}
+	public Device getDevice() {
+		return device;
 	}
 }
