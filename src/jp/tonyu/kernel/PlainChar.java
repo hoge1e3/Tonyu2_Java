@@ -1,7 +1,5 @@
 package jp.tonyu.kernel;
 
-import java.awt.Color;
-
 import jp.tonyu.coroutine.Process;
 import jp.tonyu.debug.Log;
 import jp.tonyu.kernel.screen.Screen;
@@ -11,7 +9,7 @@ public class PlainChar {
 	public Object p;
 	public double x,y,scaleX=1,scaleY=1,angle=0,alpha=255,zOrder=0;
 	public boolean f=false;
-	
+
 	public boolean designMode() {
 		return false;
 	}
@@ -20,7 +18,14 @@ public class PlainChar {
 		if (g<=0) g=0; if(g>255) g=255;
 		if (b<=0) b=0; if(b>255) b=255;
 		if (a<=0) a=0; if(a>255) a=255;
-		return new Color(r,g,b,a).getRGB();
+		if (a>=128) a=a-256;
+		int k=1;
+		int res=0;
+		res+=b*k; k*=256;
+		res+=g*k; k*=256;
+		res+=r*k; k*=256;
+		res+=a*k;
+		return res;
 	}
 	public int color(int r,int g,int b) {
 		return color(r,g,b,255);
@@ -75,7 +80,7 @@ public class PlainChar {
 		proc.suspend();
 	}
 	protected void onUpdate() {
-		
+
 	}
 	boolean isDead=false;
 	public boolean isDead() {
@@ -85,14 +90,14 @@ public class PlainChar {
 		isDead=true;
 	}
 
-	
+
 	/*public Graphics2D getGraphics() {
 		return getBoot().getGraphics();
 	}*/
 	public void draw() {
 		if (p!=null) {
 			/*Graphics2D g = getGraphics();
-			
+
 			AffineTransform a=new AffineTransform();
 			a.translate(x, y);
 			a.scale(scaleX, scaleY);
@@ -106,7 +111,7 @@ public class PlainChar {
 				//Log.d(this, " x="+x+"  y="+y+" pp="+pp+" p="+p);
 			}
 			getScreen().addImageSprite(x,y,pp,f,zOrder,angle,alpha,scaleX,scaleY);
-			
+
 			//Log.d(this,"Draw!"+p);
 		}
 	}
@@ -119,7 +124,7 @@ public class PlainChar {
 	}
 	protected void onMouseDown() {
 		// TODO Auto-generated method stub
-		
+
 	}
 	public void drawText(double x, double y,String text,int col,double size, double zOrder) {
 		if (g().doDraw) getScreen().addTextSprite(x, y, text, col, size, zOrder);
