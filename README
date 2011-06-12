@@ -1,0 +1,3 @@
+'Run Sample Program(At this directory):
+
+java -cp bin jp.tonyu.samples.ribbon.Main
