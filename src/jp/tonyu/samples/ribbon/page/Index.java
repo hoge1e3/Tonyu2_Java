@@ -29,7 +29,7 @@ public class Index implements Page {
 //<generator className="ABoot" name="$boot_1" inst_p="3" inst_x="32" inst_y="32"/>
 		g.aBoot=(ABoot) boot.appear(new ABoot().construct_PlainChar(32, 32, 5));
 //<generator className="Star" name="$star" inst_p="$pat_star+3" inst_x="179" inst_y="7"/>
-		g.Star=boot.appear(new Star().construct_Star(30, -100, g.pat_star+3, 0));
+		g.Star=boot.appear(new Star().construct_Star(179, 7, g.pat_star+3, 0));
 //<generator className="TRank1" name="$rank" inst_p="3" inst_x="456" inst_y="341"/>
 		g.rank=(TRank1) boot.appear(new TRank1().construct_PlainChar(456,341 , 6));
 //<generator className="Flash" name="$Flsh" inst_p="3" inst_x="60" inst_y="67"/>

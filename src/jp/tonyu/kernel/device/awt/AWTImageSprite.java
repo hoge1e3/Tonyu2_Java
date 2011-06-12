@@ -21,6 +21,7 @@ public class AWTImageSprite extends ImageSprite implements AWTDrawable {
 	@Override
 	public void draw(Graphics2D g) {
 		if (p instanceof AWTCharPattern) {
+			AffineTransform sv = g.getTransform();
 			AffineTransform a=new AffineTransform();
 			a.translate(x, y);
 			a.scale(scaleX, scaleY);
@@ -31,7 +32,7 @@ public class AWTImageSprite extends ImageSprite implements AWTDrawable {
 
 			AWTCharPattern pp = (AWTCharPattern) p;
 			pp.draw(g);
-			g.setTransform(E);
+			g.setTransform(sv);
 		}
 	}
 }

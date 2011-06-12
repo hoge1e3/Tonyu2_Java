@@ -16,8 +16,8 @@ public interface Screen {
 
 	void clearSprites();
 
-	public int getWidth();
-	public int getHeight();
+	public int getScreenWidth();
+	public int getScreenHeight();
 	double getMouseX();
 	double getMouseY();
 }

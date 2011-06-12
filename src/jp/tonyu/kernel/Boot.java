@@ -31,14 +31,14 @@ public class Boot {
 
 		global.projectManager=new ProjectManager(this);
 		global.chars=chars;
-		global.screenWidth=getScreen().getWidth();
-		global.screenHeight=getScreen().getHeight()-20;
+		global.screenWidth=getScreen().getScreenWidth();
+		global.screenHeight=getScreen().getScreenHeight();
 		Log.d(this, global.screenHeight);
 
 	}
 	private void refreshGlobal() {
-		global.screenWidth=getScreen().getWidth();
-		global.screenHeight=getScreen().getHeight()-20;
+		global.screenWidth=getScreen().getScreenWidth();
+		global.screenHeight=getScreen().getScreenHeight();
 
 	}
 	public Global getGlobal() {
@@ -105,6 +105,7 @@ public class Boot {
 		}
 		c.setBoot(this);
 		willAppear.add(c);
+		c.onAppear();
 		return c;
 	}
 	/*public Graphics2D getGraphics() {
@@ -113,26 +114,45 @@ public class Boot {
 	public Screen getScreen() {
 		return device.getScreen();
 	}
-
+	private boolean paused;
+	public void pause(boolean paused) {
+		this.paused=paused;
+	}
+	public void pause() {
+		pause(!paused);
+	}
 	public void doLoop() throws InterruptedException {
-		long start=System.currentTimeMillis();
+		long deadLine=System.currentTimeMillis();
 		global.frameCount=0;
 		boolean doDraw=true;
 		while (true) {
+			if (paused) {
+				Thread.sleep(10);
+				deadLine=System.currentTimeMillis();
+				continue;
+			}
 			move(doDraw);
 			long n=System.currentTimeMillis();
 			global.frameCount++;
-			long slt = start+global.frameCount*17-n;
-			if (slt>100) slt=100;
+			deadLine+=17;
+			long slt = deadLine-n;
+			if (slt>100) {
+				slt=100;
+				deadLine=System.currentTimeMillis()+slt;					
+			}
 			if (slt>0) {
 				doDraw=true;
 				Thread.sleep(slt);
 			} else {
 				doDraw=false;
+				if (slt<-100) {
+					deadLine=System.currentTimeMillis();					
+				}
 			}
 		}
 	}
 	public Device getDevice() {
 		return device;
 	}
+
 }

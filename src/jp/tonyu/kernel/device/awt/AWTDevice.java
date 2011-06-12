@@ -18,7 +18,7 @@ public class AWTDevice implements Device {
 	}
 	final AWTResourceList awtResourceList;
 	@Override
-	public Screen getScreen() {
+	public AWTScreen getScreen() {
 		return screen;
 	}
 

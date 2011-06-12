@@ -13,6 +13,8 @@ public class PlainChar {
 	public boolean designMode() {
 		return false;
 	}
+	public void onAppear() {
+	}
 	public int color(int r,int g,int b,int a) {
 		if (r<=0) r=0; if(r>255) r=255;
 		if (g<=0) g=0; if(g>255) g=255;
@@ -76,6 +78,7 @@ public class PlainChar {
 	private Boot boot;
 	Runnable state;
 	public void update() {
+		if (proc.isKilled()) throw new RuntimeException("Process is killed");
 		onUpdate();
 		proc.suspend();
 	}
@@ -88,6 +91,7 @@ public class PlainChar {
 	}
 	public void die() {
 		isDead=true;
+		proc.kill();
 	}
 
 

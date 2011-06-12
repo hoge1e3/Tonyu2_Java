@@ -5,6 +5,8 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -14,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Vector;
 
+import jp.tonyu.kernel.Boot;
 import jp.tonyu.kernel.screen.Screen;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 import jp.tonyu.kernel.screen.sprite.ImageSprite;
@@ -27,6 +30,13 @@ public class AWTScreen extends Frame implements Screen {
 	int[] keys=new int[256];
 	Color bgcolor=new Color(20,80,180);
 	private List<AWTDrawable> slist = new Vector<AWTDrawable>();
+	Boot boot;
+	public Boot getBoot() {
+		return boot;
+	}
+	public void setBoot(Boot boot) {
+		this.boot = boot;
+	}
 	public AWTScreen() {
 		buf=new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		clearSprites();
@@ -39,18 +49,39 @@ public class AWTScreen extends Frame implements Screen {
 				System.exit(1);
 			}
 		});
+		addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_F3) {
+					if (boot!=null) boot.pause();
+				}				
+			}
+		});
 		addMouseMotionListener(new MouseMotionListener() {
 
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				mx=e.getX();
-				my=e.getY();
+				my=e.getY()-titleBar;
 			}
 
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				mx=e.getX();
-				my=e.getY();
+				my=e.getY()-titleBar;
 			}
 		});
 		addMouseListener(new MouseListener() {
@@ -58,35 +89,35 @@ public class AWTScreen extends Frame implements Screen {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				mx=e.getX();
-				my=e.getY();
+				my=e.getY()-titleBar;
 
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
 				mx=e.getX();
-				my=e.getY();
+				my=e.getY()-titleBar;
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				mx=e.getX();
-				my=e.getY();
+				my=e.getY()-titleBar;
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				mx=e.getX();
-				my=e.getY();
+				my=e.getY()-titleBar;
 
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				mx=e.getX();
-				my=e.getY();
+				my=e.getY()-titleBar;
 
 			}
 		});
@@ -113,7 +144,7 @@ public class AWTScreen extends Frame implements Screen {
 		Graphics2D g = (Graphics2D) buf.getGraphics();
 		g.setColor(bgcolor);
 		g.fillRect(0, 0, width, height);
-		g.translate(0, 20);
+		g.translate(0, titleBar);
 		//Log.d(this,slist.size());
 		for (AWTDrawable s:slist) {
 			s.draw(g);
@@ -147,4 +178,13 @@ public class AWTScreen extends Frame implements Screen {
 	public double getMouseX(){return mx;}
 	@Override
 	public double getMouseY(){return my;}
+	@Override
+	public int getScreenHeight() {
+		return getHeight()-titleBar;
+	}
+	int titleBar=25;
+	@Override
+	public int getScreenWidth() {
+		return getWidth();
+	}
 }

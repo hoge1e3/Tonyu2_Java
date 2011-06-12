@@ -18,6 +18,7 @@ public class Main {
 		AWTDevice d=new AWTDevice(new File("image"));
 		RGlobal g = new RGlobal();
 		Boot b = new Boot(d, g);
+		d.getScreen().setBoot(b);
 		new Index().load(b);
 		b.doLoop();
 	}
