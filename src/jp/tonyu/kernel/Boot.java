@@ -154,5 +154,18 @@ public class Boot {
 	public Device getDevice() {
 		return device;
 	}
+	public void clear() {
+		scheduler.killAll();
+		for (PlainChar c:chars) {
+			c.die();
+		}
+		global.doDraw=false;
+		int cnt=0;
+		while (!scheduler.empty()) {
+			scheduler.runAll();
+			cnt++;
+			if (cnt>10) Log.die("Error: cannot kill some process");
+		}
+	}
 
 }

@@ -10,6 +10,7 @@ public class ProjectManager {
 	}
 	public void loadPage(Page p) {
 		try {
+			boot.clear();
 			p.load(boot);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

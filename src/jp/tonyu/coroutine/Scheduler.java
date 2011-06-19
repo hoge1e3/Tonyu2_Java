@@ -38,4 +38,12 @@ public class Scheduler  {
 		}
 		willAdd.clear();
 	}
+	public void killAll() {
+		for (Process p:procs) {
+			p.kill();
+		}
+	}
+	public boolean empty() {
+		return procs.isEmpty();
+	}
 }

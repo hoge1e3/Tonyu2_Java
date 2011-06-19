@@ -19,7 +19,8 @@ public class Main {
 		RGlobal g = new RGlobal();
 		Boot b = new Boot(d, g);
 		d.getScreen().setBoot(b);
-		new Index().load(b);
+		g.page_index=new Index();
+		g.projectManager.loadPage(g.page_index);
 		b.doLoop();
 	}
 

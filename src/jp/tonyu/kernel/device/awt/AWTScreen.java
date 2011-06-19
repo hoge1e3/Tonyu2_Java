@@ -17,10 +17,12 @@ import java.util.List;
 import java.util.Vector;
 
 import jp.tonyu.kernel.Boot;
+import jp.tonyu.kernel.PlainChar;
 import jp.tonyu.kernel.screen.Screen;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 import jp.tonyu.kernel.screen.sprite.ImageSprite;
 import jp.tonyu.kernel.screen.sprite.LineSprite;
+import jp.tonyu.kernel.screen.sprite.Sprite;
 import jp.tonyu.kernel.screen.sprite.TextSprite;
 
 public class AWTScreen extends Frame implements Screen {
@@ -97,7 +99,7 @@ public class AWTScreen extends Frame implements Screen {
 			public void mousePressed(MouseEvent e) {
 				mx=e.getX();
 				my=e.getY()-titleBar;
-
+				doMouseDown(mx,my);
 			}
 
 			@Override
@@ -121,6 +123,13 @@ public class AWTScreen extends Frame implements Screen {
 
 			}
 		});
+	}
+	public void doMouseDown(double x,double y) {
+		Sprite s = Sprite.checkClick((List)slist, x, y);
+		if (s!=null) {
+			PlainChar g = s.getGenerator();
+			if (g!=null) g.onMouseDown(x,y);
+		}
 	}
 	public Image getBuffer() {
 		return buf;

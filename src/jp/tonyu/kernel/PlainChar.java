@@ -132,21 +132,30 @@ public class PlainChar {
 		getBoot().appear(c);
 		return c;
 	}
-	protected void onMouseDown() {
-		// TODO Auto-generated method stub
+	public void onMouseDown(double x,double y) {
 
 	}
-	public void drawText(double x, double y,String text,int col,double size, double zOrder) {
+	public Sprite drawText(double x, double y,String text,int col,double size, double zOrder) {
 		if (g().doDraw) {
 			Sprite s=getScreen().addTextSprite(x, y, text, col, size, zOrder);
 			s.setGenerator(this);
+			return s;
 		}
+		return null;
 	}
-	public void drawText(double x, double y, String string, int color) {
-		if (g().doDraw) drawText(x,y,string,color,12,0);
+	public Sprite drawText(double x, double y, String string, int color) {
+		if (g().doDraw) {
+			Sprite s=drawText(x,y,string,color,12,0);
+			s.setGenerator(this);
+			return s;
+		}
+		return null;
 	}
 	public void drawLine(double sx,double sy,double dx,double dy,int color) {
-		if (g().doDraw) getScreen().addLineSprite(sx, sy, dx, dy, color);
+		if (g().doDraw) {
+			Sprite s=getScreen().addLineSprite(sx, sy, dx, dy, color);
+			s.setGenerator(this);
+		}
 	}
 	public double rnd() {
 		return Math.random();

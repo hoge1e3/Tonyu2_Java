@@ -13,7 +13,7 @@ public class ABoot extends RPlainChar implements MultiThreadChar {
 	private int i;
 	// 時間やレベル、ゲームオーバーの処理など、ゲーム全体の管理を行う。
 	@Override
-	protected void onMouseDown() {
+	public void onMouseDown(double x, double y) {
 		// ゲームオーバー時に"Replay F9"がクリックされるとゲームを最初から始める
 		if (g().time<=0 && !designMode()) {
 			g().projectManager.loadPage(g().page_index);
