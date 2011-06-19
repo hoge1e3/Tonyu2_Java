@@ -6,6 +6,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
 import jp.tonyu.debug.Log;
+import jp.tonyu.kernel.screen.TRect;
 import jp.tonyu.kernel.screen.sprite.TextSprite;
 
 public class AWTTextSprite extends TextSprite implements AWTDrawable {
@@ -22,6 +23,9 @@ public class AWTTextSprite extends TextSprite implements AWTDrawable {
 		FontMetrics fm = g.getFontMetrics();
 		g.setColor(new Color(col));
 		g.drawString(text, (int)x, (int)y+fm.getAscent());
+		double h=fm.getAscent();
+		double w=fm.stringWidth(text);
+		setTRect(new TRect(x, y, w, h));
 		//Log.d(this, col+" x ="+x+"y="+y);
 	}
 

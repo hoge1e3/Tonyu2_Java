@@ -3,12 +3,15 @@ package jp.tonyu.kernel;
 import jp.tonyu.coroutine.Process;
 import jp.tonyu.debug.Log;
 import jp.tonyu.kernel.screen.Screen;
+import jp.tonyu.kernel.screen.TRect;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
+import jp.tonyu.kernel.screen.sprite.Sprite;
 
 public class PlainChar {
 	public Object p;
 	public double x,y,scaleX=1,scaleY=1,angle=0,alpha=255,zOrder=0;
 	public boolean f=false;
+	public TRect bounds;
 
 	public boolean designMode() {
 		return false;
@@ -78,7 +81,10 @@ public class PlainChar {
 	private Boot boot;
 	Runnable state;
 	public void update() {
-		if (proc.isKilled()) throw new RuntimeException("Process is killed");
+		if (proc.isKilled()) {
+			die();
+			throw new RuntimeException("Process is killed");
+		}
 		onUpdate();
 		proc.suspend();
 	}
@@ -131,7 +137,10 @@ public class PlainChar {
 
 	}
 	public void drawText(double x, double y,String text,int col,double size, double zOrder) {
-		if (g().doDraw) getScreen().addTextSprite(x, y, text, col, size, zOrder);
+		if (g().doDraw) {
+			Sprite s=getScreen().addTextSprite(x, y, text, col, size, zOrder);
+			s.setGenerator(this);
+		}
 	}
 	public void drawText(double x, double y, String string, int color) {
 		if (g().doDraw) drawText(x,y,string,color,12,0);

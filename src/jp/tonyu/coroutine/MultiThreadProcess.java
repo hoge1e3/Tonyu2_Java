@@ -9,7 +9,7 @@ public abstract class MultiThreadProcess implements Process {
 		scheduler=s;
 	}
 	boolean started=false;
-	boolean killed=false;
+	boolean killed=false, killCompleted=false;
 
 	@Override
 	public boolean usesThread() {
@@ -39,7 +39,8 @@ public abstract class MultiThreadProcess implements Process {
 					try {
 						MultiThreadProcess.this.run();						
 					} finally {
-						kill();					
+						kill();				
+						killCompleted=true;
 						scheduler.resume();
 					}
 				}
@@ -49,5 +50,9 @@ public abstract class MultiThreadProcess implements Process {
 	@Override
 	public boolean isKilled() {
 		return killed;
+	}
+	@Override
+	public boolean isKillCompleted() {
+		return killCompleted;
 	}
 }

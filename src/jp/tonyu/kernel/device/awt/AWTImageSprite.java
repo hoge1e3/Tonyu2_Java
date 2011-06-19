@@ -4,6 +4,8 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
+import jp.tonyu.kernel.screen.TRect;
+import jp.tonyu.kernel.screen.TSize;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 import jp.tonyu.kernel.screen.sprite.ImageSprite;
 
@@ -33,6 +35,8 @@ public class AWTImageSprite extends ImageSprite implements AWTDrawable {
 			AWTCharPattern pp = (AWTCharPattern) p;
 			pp.draw(g);
 			g.setTransform(sv);
+			TSize sz = pp.getSize();
+			setTRect(new TRect(x-sz.w/2,y-sz.h/2,sz.w,sz.h));
 		}
 	}
 }

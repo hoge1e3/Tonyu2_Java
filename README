@@ -1,3 +1,13 @@
-'Run Sample Program(At this directory):
+==Description
 
-java -cp bin jp.tonyu.samples.ribbon.Main
+Tonyu2 is Action-game framework on Java.
+Runs on Java application and android.
+
+==How to run
+
+Import as eclipse project and run jp.tonyu.samples.ribbon.Main
+
+or, after compilation, run from command line(At this directory):
+
+% java -cp bin jp.tonyu.samples.ribbon.Main
+

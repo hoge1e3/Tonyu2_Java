@@ -19,7 +19,7 @@ public class Scheduler  {
 		Vector<Process> willKilled = new Vector<Process>();
 		//Log.d(this, "Procs "+procs);
 		for (Process a:procs) {
-			if (a.isKilled()) {
+			if (a.isKillCompleted()) {
 				willKilled.add(a);
 				continue;
 			}

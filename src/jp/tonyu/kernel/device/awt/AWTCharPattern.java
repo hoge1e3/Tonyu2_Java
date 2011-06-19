@@ -3,6 +3,7 @@ package jp.tonyu.kernel.device.awt;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import jp.tonyu.kernel.screen.TSize;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 
 public class AWTCharPattern implements CharPattern {
@@ -16,5 +17,9 @@ public class AWTCharPattern implements CharPattern {
 
 	public Image getImg() {
 		return img;
+	}
+	@Override
+	public TSize getSize() {
+		return new TSize(img.getWidth(null), img.getHeight(null));
 	}
 }

@@ -1,13 +1,13 @@
 package jp.tonyu.coroutine;
 
 public abstract class SingleThreadProcess implements Process {
-	boolean kill;
+	boolean killed;
 	@Override
 	public boolean isKilled() {
-		return kill;
+		return killed;
 	}
 	public void kill() {
-		kill=true;
+		killed=true;
 	}
 	@Override
 	public void suspend() {
@@ -23,5 +23,8 @@ public abstract class SingleThreadProcess implements Process {
 	public boolean usesThread() {
 		return false;
 	}
-
+	@Override
+	public boolean isKillCompleted() {
+		return killed;
+	}
 }

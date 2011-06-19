@@ -5,5 +5,6 @@ public interface Process {
 	public void suspend();
 	public void resume();
 	public boolean isKilled();
+	public boolean isKillCompleted();
 	public void kill();
 }
