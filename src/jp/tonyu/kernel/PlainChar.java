@@ -1,7 +1,8 @@
 package jp.tonyu.kernel;
 
 import jp.tonyu.coroutine.Process;
-import jp.tonyu.debug.Log;
+import jp.tonyu.coroutine.ProcessKilledException;
+import jp.tonyu.debug.TLog;
 import jp.tonyu.kernel.screen.Screen;
 import jp.tonyu.kernel.screen.TRect;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
@@ -70,7 +71,7 @@ public class PlainChar {
 		proc=p;
 	}
 	public Boot getBoot() {
-		return Log.notNull(boot, "boot is null");
+		return TLog.notNull(boot, "boot is null");
 	}
 	public void setBoot(Boot boot) {
 		this.boot = boot;
@@ -83,7 +84,7 @@ public class PlainChar {
 	public void update() {
 		if (proc.isKilled()) {
 			die();
-			throw new RuntimeException("Process is killed");
+			throw new ProcessKilledException("Process is killed");
 		}
 		onUpdate();
 		proc.suspend();

@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
-import jp.tonyu.debug.Log;
+import jp.tonyu.debug.TLog;
 import jp.tonyu.kernel.screen.TRect;
 import jp.tonyu.kernel.screen.sprite.TextSprite;
 

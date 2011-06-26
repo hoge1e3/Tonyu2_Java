@@ -1,10 +1,11 @@
 package jp.tonyu.kernel;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Hashtable;
 import java.util.List;
 
-public class Global {
+public abstract class Global {
 	public double mouseX,mouseY;
 	public ProjectManager projectManager;
 	public List<PlainChar> chars;
@@ -36,5 +37,9 @@ public class Global {
 			e.printStackTrace();
 		}
 	}
-		
+	public void loadPatterns(Boot boot) throws IOException {
+		boot.loadPattern("ball");
+	}
+	public abstract void start(Boot boot);
+	
 }

@@ -52,24 +52,24 @@ public class AWTScreen extends Frame implements Screen {
 			}
 		});
 		addKeyListener(new KeyListener() {
-			
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_F3) {
 					if (boot!=null) boot.pause();
-				}				
+				}
 			}
 		});
 		addMouseMotionListener(new MouseMotionListener() {
@@ -166,21 +166,27 @@ public class AWTScreen extends Frame implements Screen {
 			 double angle, double alpha,
 			 double scaleX, double scaleY) {
 		AWTImageSprite res = new AWTImageSprite(x,y,p,f,zOrder,angle,alpha,scaleX,scaleY);
-		slist.add(res);
+		synchronized (slist) {
+			slist.add(res);
+		}
 		return res;
 	}
 	@Override
 	public TextSprite addTextSprite(double x, double y, String text, int color,
 			double size, double zOrder) {
 		AWTTextSprite res= new AWTTextSprite(x,y,text,color,size,zOrder);
-		slist.add(res);
+		synchronized (slist) {
+			slist.add(res);
+		}
 		return res;
 	}
 	@Override
 	public LineSprite addLineSprite(double sx, double sy, double dx, double dy,
 			int color) {
 		AWTLineSprite res= new AWTLineSprite(sx, sy, dx, dy, color);
-		slist.add(res);
+		synchronized (slist) {
+			slist.add(res);
+		}
 		return res;
 	}
 	@Override

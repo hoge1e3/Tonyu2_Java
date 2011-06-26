@@ -37,9 +37,11 @@ public abstract class MultiThreadProcess implements Process {
 				@Override
 				public void run() {
 					try {
-						MultiThreadProcess.this.run();						
+						MultiThreadProcess.this.run();
+					} catch (ProcessKilledException e) {
+
 					} finally {
-						kill();				
+						kill();
 						killCompleted=true;
 						scheduler.resume();
 					}

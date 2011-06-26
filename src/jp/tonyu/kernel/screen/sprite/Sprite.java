@@ -28,12 +28,15 @@ public abstract class Sprite {
 		return generator;
 	}
 	public static Sprite checkClick(Collection<Sprite> list,double x, double y) {
-		for (Sprite s:list) {
-			TRect r = s.getTRect();
-			if (r!=null && r.inRect(x, y)) {
-				return s;
+		synchronized (list) {
+			for (Sprite s:list) {
+				TRect r = s.getTRect();
+				if (r!=null && r.inRect(x, y)) {
+					return s;
+				}
 			}
+			return null;
+
 		}
-		return null;
 	}
 }

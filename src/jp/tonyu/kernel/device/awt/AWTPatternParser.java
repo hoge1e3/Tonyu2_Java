@@ -13,7 +13,7 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
-import jp.tonyu.debug.Log;
+import jp.tonyu.debug.TLog;
 import jp.tonyu.kernel.screen.pattern.CharPattern;
 import jp.tonyu.kernel.screen.pattern.PatterParseError;
 import jp.tonyu.kernel.screen.pattern.PatternParser;
@@ -65,7 +65,7 @@ public class AWTPatternParser implements PatternParser {
 			dy++;
 		}
 		if (dy>=height || buf.getRGB(dx,dy)!=base) throw new PatterParseError(this,dx,dy,"");
-		Log.d(this, SPrintf.sprintf("x=%d y=%d dx=%d dy=%d",x,y,dx,dy));
+		TLog.d(this, SPrintf.sprintf("x=%d y=%d dx=%d dy=%d",x,y,dx,dy));
 		dy--;
 		int sx=x+1,sy=y+1,w=dx-sx,h=dy-sy;
 		if (w*h==0) throw new PatterParseError(this, dx, dy,"");
@@ -77,7 +77,7 @@ public class AWTPatternParser implements PatternParser {
 			}
 		}
 		BufferedImage i=new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-		Log.d(this, SPrintf.sprintf("%d %d %d %d %d %d",w,h,sx,sy,dx,dy));
+		TLog.d(this, SPrintf.sprintf("%d %d %d %d %d %d",w,h,sx,sy,dx,dy));
 		i.getGraphics().drawImage(buf, 0, 0, w, h, sx, sy, dx, dy, null);
 		Graphics g = buf.getGraphics();
 		g.setColor(new Color(base,true));

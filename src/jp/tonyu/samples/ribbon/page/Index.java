@@ -2,6 +2,7 @@ package jp.tonyu.samples.ribbon.page;
 
 import java.io.IOException;
 
+import jp.tonyu.debug.TLog;
 import jp.tonyu.kernel.Boot;
 import jp.tonyu.kernel.Page;
 import jp.tonyu.kernel.device.ResourceList;
@@ -16,6 +17,8 @@ public class Index implements Page {
 
 	@Override
 	public void load(Boot boot) throws IOException {
+		TLog.d("ribbon", "Loading page...");
+
 		RGlobal g=(RGlobal)boot.getGlobal();
 //<cpattern name="$pat_star" src="star.bmp"/>
 		ResourceList rlist = boot.getDevice().getResourceList();
@@ -35,6 +38,7 @@ public class Index implements Page {
 //<generator className="Flash" name="$Flsh" inst_p="3" inst_x="60" inst_y="67"/>
 		g.Flsh=(Flash) boot.appear(new Flash().construct_PlainChar(60, 67, 7));
 //<generator className="regist" name="$regist" inst_col="$clWhite" inst_text="%22Register HiScore%22" inst_size="15" inst_x="331" inst_y="63"/>
+		TLog.d("ribbon", "Loading page...done");
 		
 	}
 	/*

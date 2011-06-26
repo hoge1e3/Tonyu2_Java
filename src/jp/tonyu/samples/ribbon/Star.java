@@ -1,6 +1,6 @@
 package jp.tonyu.samples.ribbon;
 
-import jp.tonyu.debug.Log;
+import jp.tonyu.debug.TLog;
 import jp.tonyu.kernel.MultiThreadChar;
 import jp.tonyu.kernel.PlainChar;
 
@@ -118,7 +118,7 @@ public class Star extends RPlainChar implements MultiThreadChar {
 		life=maxlife*0.5;
 		vx=0;vy=-1;
 		y=-150;
-		Log.d(this,g().time);
+		TLog.d(this,g().time);
 		/*while (p!=null) {
 			p=3;
 			x=100;

@@ -13,14 +13,11 @@ public class Main {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		/*AWTPatternParser p = new AWTPatternParser(ImageIO.read(new File("Ball.png")));
-		List<CharPattern> pats = p.parse();*/
 		AWTDevice d=new AWTDevice(new File("image"));
 		RGlobal g = new RGlobal();
 		Boot b = new Boot(d, g);
 		d.getScreen().setBoot(b);
-		g.page_index=new Index();
-		g.projectManager.loadPage(g.page_index);
+		g.start(b);
 		b.doLoop();
 	}
 

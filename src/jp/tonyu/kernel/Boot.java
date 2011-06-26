@@ -1,5 +1,6 @@
 package jp.tonyu.kernel;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
@@ -7,7 +8,7 @@ import jp.tonyu.coroutine.MultiThreadProcess;
 import jp.tonyu.coroutine.Process;
 import jp.tonyu.coroutine.Scheduler;
 import jp.tonyu.coroutine.SingleThreadProcess;
-import jp.tonyu.debug.Log;
+import jp.tonyu.debug.TLog;
 import jp.tonyu.kernel.device.Device;
 import jp.tonyu.kernel.screen.Screen;
 import jp.tonyu.kernel.screen.pattern.PatternSequencer;
@@ -33,7 +34,7 @@ public class Boot {
 		global.chars=chars;
 		global.screenWidth=getScreen().getScreenWidth();
 		global.screenHeight=getScreen().getScreenHeight();
-		Log.d(this, global.screenHeight);
+		TLog.d(this, global.screenHeight);
 
 	}
 	private void refreshGlobal() {
@@ -101,7 +102,7 @@ public class Boot {
 			scheduler.add(pr);
 			c.setPrimaryProcess(pr);
 		} else {
-			Log.die(c+" is neigher StateChar not MultthreadChar");
+			TLog.die(c+" is neigher StateChar not MultthreadChar");
 		}
 		c.setBoot(this);
 		willAppear.add(c);
@@ -159,13 +160,17 @@ public class Boot {
 		for (PlainChar c:chars) {
 			c.die();
 		}
+		TLog.d("tonyu", "Boot:clear...");
 		global.doDraw=false;
 		int cnt=0;
 		while (!scheduler.empty()) {
 			scheduler.runAll();
 			cnt++;
-			if (cnt>10) Log.die("Error: cannot kill some process");
+			if (cnt>10) TLog.die("Error: cannot kill some process");
 		}
+		TLog.d("tonyu", "Boot:clear...done cnt="+cnt);
 	}
-
+	public int loadPattern(String name) throws IOException {
+		return getPatternSequencer().add(getDevice().getResourceList().getImageResource(name));
+	}
 }

@@ -1,6 +1,6 @@
 package jp.tonyu.samples.ribbon;
 
-import jp.tonyu.debug.Log;
+import jp.tonyu.debug.TLog;
 import jp.tonyu.kernel.Array;
 import jp.tonyu.kernel.MultiThreadChar;
 import jp.tonyu.kernel.PlainChar;
@@ -40,7 +40,7 @@ public class ABoot extends RPlainChar implements MultiThreadChar {
 		//g().mplayer.play(g().se_Main);
 		g().srank=2000;
 		g().time=60;
-		Log.d(this, g().time);
+		TLog.d(this, g().time);
 		g().level=1;
 		g().exp=0;
 
